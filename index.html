@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlocentraAI | Bitcoin Risk Intelligence Platform</title>
+    <meta name="description" content="AI-powered Bitcoin insurance and risk management platform">
+    <style>
+        /* CSS Reset and Base Styles */
+        :root {
+            --primary: #1A73E8;
+            --primary-dark: #0d47a1;
+            --secondary: #FF6D00;
+            --dark: #121212;
+            --dark-gray: #1E1E1E;
+            --medium-gray: #2D2D2D;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+            --success: #00C853;
+            --warning: #FFAB00;
+            --danger: #D32F2F;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--medium-gray);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .alt-bg {
+            background-color: var(--light-gray);
+        }
+
+        /* Risk Scanner */
+        .scanner-container {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .risk-score {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .score-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .score-circle span {
+            font-size: 2.5rem;
+        }
+
+        .score-circle small {
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+        }
+
+        .risk-factors, .recommendations {
+            margin-bottom: 1.5rem;
+        }
+
+        .risk-factors h4, .recommendations h4 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .risk-factors ul, .recommendations ul {
+            list-style-type: none;
+        }
+
+        .risk-factors li, .recommendations li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .risk-factors li::before {
+            content: "⚠️";
+            margin-right: 0.5rem;
+        }
+
+        .recommendations li::before {
+            content: "✅";
+            margin-right: 0.5rem;
+        }
+
+        /* Insurance Calculator */
+        .insurance-calculator {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calculator-input {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .calculator-input label {
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .calculator-input input, .calculator-input select {
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .quote-details {
+            margin: 1.5rem 0;
+        }
+
+        .quote-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .quote-row.total {
+            font-weight: 700;
+            border-top: 2px solid var(--primary);
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+        }
+
+        /* Yield Vaults */
+        .vault-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .vault-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .vault-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .vault-card.featured {
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .vault-card.featured::before {
+            content: "Recommended";
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .vault-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .vault-header h3 {
+            margin-bottom: 0;
+        }
+
+        .apy {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .vault-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .vault-details p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9375rem;
+        }
+
+        .vault-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .vault-details-btn {
+            flex: 1;
+        }
+
+        .deposit-btn {
+            flex: 1;
+        }
+
+        /* About Features */
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+
+        /* Modals */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .wallet-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .wallet-btn {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: var(--light-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .wallet-btn:hover {
+            background-color: #e9e9e9;
+        }
+
+        .wallet-btn i {
+            font-size: 1.5rem;
+        }
+
+        .demo-note {
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .deposit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .deposit-form input {
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .deposit-details {
+            margin: 1rem 0;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+            
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .vault-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .wallet-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Blocentra<span>AI</span></a>
+                <div class="nav-links">
+                    <a href="#risk-scanner">Risk Scanner</a>
+                    <a href="#insurance">Insurance</a>
+                    <a href="#yield">Yield Vaults</a>
+                    <a href="#about">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Bitcoin Risk Intelligence Platform</h1>
+            <p>Protect and grow your Bitcoin with AI-powered security and insured yield opportunities</p>
+            <div class="cta-buttons">
+                <button id="connectWallet" class="btn btn-primary">
+                    <i class="fas fa-wallet"></i> Connect Wallet
+                </button>
+                <a href="#risk-scanner" class="btn btn-outline">Try Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Scanner Section -->
+    <section id="risk-scanner" class="section">
+        <div class="container">
+            <h2><i class="fas fa-shield-alt"></i> Wallet Risk Scanner</h2>
+            <p>Enter a Bitcoin address to assess its security risk profile</p>
+            
+            <div class="scanner-container">
+                <div class="input-group">
+                    <input type="text" id="btcAddress" placeholder="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa" pattern="^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$">
+                    <button id="scanAddress" class="btn btn-primary">Scan Address</button>
+                </div>
+                
+                <div id="riskResults" class="hidden">
+                    <div class="risk-score">
+                        <div class="score-circle">
+                            <span id="scoreValue">0</span>
+                            <small>/100</small>
+                        </div>
+                        <h3 id="riskLevel">Low Risk</h3>
+                    </div>
+                    
+                    <div class="risk-factors">
+                        <h4>Risk Factors</h4>
+                        <ul id="riskFactorsList">
+                            <!-- Filled by JavaScript -->
+                        </ul>
+                    </div>
+                    
+                    <div class="recommendations">
+                        <h4>Recommendations</h4>
+                        <ul id="recommendationsList">
+                            <!-- Filled by JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Section -->
+    <section id="insurance" class="section alt-bg">
+        <div class="container">
+            <h2><i class="fas fa-umbrella"></i> Bitcoin Insurance</h2>
+            <p>Get dynamic, AI-powered protection for your Bitcoin holdings</p>
+            
+            <div class="insurance-calculator">
+                <div class="calculator-input">
+                    <label for="btcAmount">BTC Amount to Insure</label>
+                    <input type="number" id="btcAmount" min="0.001" step="0.001" value="0.1">
+                    
+                    <label for="coverageType">Coverage Type</label>
+                    <select id="coverageType">
+                        <option value="basic">Basic (Wallet Protection)</option>
+                        <option value="advanced">Advanced (Wallet + Smart Contracts)</option>
+                        <option value="institutional">Institutional (Full Coverage)</option>
+                    </select>
+                    
+                    <button id="calculatePremium" class="btn btn-primary">Calculate Premium</button>
+                </div>
+                
+                <div id="insuranceQuote" class="hidden">
+                    <h3>Your Insurance Quote</h3>
+                    <div class="quote-details">
+                        <div class="quote-row">
+                            <span>BTC Amount</span>
+                            <span id="quoteAmount">0.1 BTC</span>
+                        </div>
+                        <div class="quote-row">
+                            <span>Coverage Type</span>
+                            <span id="quoteType">Basic</span>
+                        </div>
+                        <div class="quote-row">
+                            <span>Annual Premium</span>
+                            <span id="quotePremium">0.002 BTC</span>
+                        </div>
+                        <div class="quote-row total">
+                            <span>Total Coverage</span>
+                            <span id="quoteCoverage">$3,800</span>
+                        </div>
+                    </div>
+                    <button id="purchaseInsurance" class="btn btn-primary">Purchase Protection</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yield Vaults Section -->
+    <section id="yield" class="section">
+        <div class="container">
+            <h2><i class="fas fa-coins"></i> Insured Yield Vaults</h2>
+            <p>Earn yield on your Bitcoin with AI-managed, insured strategies</p>
+            
+            <div class="vault-grid">
+                <div class="vault-card">
+                    <div class="vault-header">
+                        <h3>Conservative Vault</h3>
+                        <span class="apy">5.2% APY</span>
+                    </div>
+                    <div class="vault-details">
+                        <p><i class="fas fa-shield-alt"></i> 95% Insurance Coverage</p>
+                        <p><i class="fas fa-clock"></i> Instant Liquidity</p>
+                        <p><i class="fas fa-check-circle"></i> Low Risk</p>
+                    </div>
+                    <div class="vault-actions">
+                        <button class="btn btn-outline vault-details-btn">Details</button>
+                        <button class="btn btn-primary deposit-btn">Deposit</button>
+                    </div>
+                </div>
+                
+                <div class="vault-card featured">
+                    <div class="vault-header">
+                        <h3>Balanced Vault</h3>
+                        <span class="apy">8.7% APY</span>
+                    </div>
+                    <div class="vault-details">
+                        <p><i class="fas fa-shield-alt"></i> 90% Insurance Coverage</p>
+                        <p><i class="fas fa-clock"></i> 3-Day Unbonding</p>
+                        <p><i class="fas fa-check-circle"></i> Medium Risk</p>
+                    </div>
+                    <div class="vault-actions">
+                        <button class="btn btn-outline vault-details-btn">Details</button>
+                        <button class="btn btn-primary deposit-btn">Deposit</button>
+                    </div>
+                </div>
+                
+                <div class="vault-card">
+                    <div class="vault-header">
+                        <h3>Growth Vault</h3>
+                        <span class="apy">12.5% APY</span>
+                    </div>
+                    <div class="vault-details">
+                        <p><i class="fas fa-shield-alt"></i> 80% Insurance Coverage</p>
+                        <p><i class="fas fa-clock"></i> 7-Day Unbonding</p>
+                        <p><i class="fas fa-check-circle"></i> High Risk</p>
+                    </div>
+                    <div class="vault-actions">
+                        <button class="btn btn-outline vault-details-btn">Details</button>
+                        <button class="btn btn-primary deposit-btn">Deposit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section alt-bg">
+        <div class="container">
+            <h2>About BlocentraAI</h2>
+            <p>BlocentraAI is building the essential risk infrastructure layer for the Bitcoin economy. Our AI-powered platform provides:</p>
+            
+            <div class="about-features">
+                <div class="feature">
+                    <i class="fas fa-brain"></i>
+                    <h3>Predictive Risk Models</h3>
+                    <p>Advanced machine learning to detect threats before they occur</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-lock"></i>
+                    <h3>Non-Custodial Protection</h3>
+                    <p>Secure your Bitcoin without giving up control of your keys</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Institutional Tools</h3>
+                    <p>Compliance-ready dashboards and reporting for enterprises</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BlocentraAI</h3>
+                    <p>AI-powered Bitcoin insurance and risk intelligence</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Product</h3>
+                    <a href="#risk-scanner">Risk Scanner</a>
+                    <a href="#insurance">Insurance</a>
+                    <a href="#yield">Yield Vaults</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <a href="#about">About</a>
+                    <a href="#">Team</a>
+                    <a href="#">Careers</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <a href="mailto:riekgatluak25@gmail.com">Email</a>
+                    <a href="https://wa.me/211981211736">WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BlocentraAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="walletModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Connect Wallet</h3>
+            <p>Choose your wallet provider to connect:</p>
+            <div class="wallet-options">
+                <button class="wallet-btn">
+                    <i class="fab fa-bitcoin"></i> Bitcoin Core
+                </button>
+                <button class="wallet-btn">
+                    <i class="fas fa-wallet"></i> Electrum
+                </button>
+                <button class="wallet-btn">
+                    <i class="fas fa-mobile-alt"></i> Mobile Wallet
+                </button>
+                <button class="wallet-btn">
+                    <i class="fas fa-qrcode"></i> QR Code
+                </button>
+            </div>
+            <p class="demo-note">Note: This is a demo. No actual wallet connection occurs.</p>
+        </div>
+    </div>
+
+    <div id="depositModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="depositVaultName">Deposit to Vault</h3>
+            <div class="deposit-form">
+                <label for="depositAmount">BTC Amount</label>
+                <input type="number" id="depositAmount" min="0.001" step="0.001" value="0.1">
+                
+                <div class="deposit-details">
+                    <div class="detail-row">
+                        <span>Estimated APY</span>
+                        <span id="depositApy">8.7%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Insurance Coverage</span>
+                        <span id="depositCoverage">90%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Unbonding Period</span>
+                        <span id="depositUnbonding">3 days</span>
+                    </div>
+                </div>
+                
+                <button id="confirmDeposit" class="btn btn-primary">Confirm Deposit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const connectWalletBtn = document.getElementById('connectWallet');
+            const scanAddressBtn = document.getElementById('scanAddress');
+            const btcAddressInput = document.getElementById('btcAddress');
+            const riskResults = document.getElementById('riskResults');
+            const scoreValue = document.getElementById('scoreValue');
+            const riskLevel = document.getElementById('riskLevel');
+            const riskFactorsList = document.getElementById('riskFactorsList');
+            const recommendationsList = document.getElementById('recommendationsList');
+            const calculatePremiumBtn = document.getElementById('calculatePremium');
+            const insuranceQuote = document.getElementById('insuranceQuote');
+            const purchaseInsuranceBtn = document.getElementById('purchaseInsurance');
+            const depositBtns = document.querySelectorAll('.deposit-btn');
+            const walletModal = document.getElementById('walletModal');
+            const depositModal = document.getElementById('depositModal');
+            const closeModalBtns = document.querySelectorAll('.close-modal');
+            const walletOptions = document.querySelectorAll('.wallet-btn');
+
+            // Sample data for risk factors and recommendations
+            const riskData = {
+                low: {
+                    score: 85,
+                    level: "Low Risk",
+                    factors: [
+                        "No suspicious transaction patterns detected",
+                        "Address has consistent activity history",
+                        "Funds distributed across multiple UTXOs",
+                        "No connections to known risky addresses"
+                    ],
+                    recommendations: [
+                        "Maintain current security practices",
+                        "Consider multi-sig for large holdings",
+                        "Enable 2FA on associated accounts",
+                        "Regularly review address activity"
+                    ]
+                },
+                medium: {
+                    score: 60,
+                    level: "Medium Risk",
+                    factors: [
+                        "Some connections to mixing services",
+                        "Large single UTXO detected",
+                        "Irregular transaction patterns",
+                        "Recent high-volume transfers"
+                    ],
+                    recommendations: [
+                        "Distribute funds across multiple addresses",
+                        "Consider time-locked storage",
+                        "Enable transaction monitoring alerts",
+                        "Review connected service permissions"
+                    ]
+                },
+                high: {
+                    score: 30,
+                    level: "High Risk",
+                    factors: [
+                        "Multiple connections to darknet markets",
+                        "Recent phishing scam involvement",
+                        "Poor UTXO management",
+                        "Suspicious transaction patterns"
+                    ],
+                    recommendations: [
+                        "Immediately transfer funds to new address",
+                        "Enable maximum security protocols",
+                        "Consider hardware wallet storage",
+                        "Review all connected services"
+                    ]
+                }
+            };
+
+            // Sample BTC price for calculations
+            const btcPrice = 38000; // $38,000 per BTC
+
+            // Connect Wallet Button
+            connectWalletBtn.addEventListener('click', function() {
+                walletModal.classList.add('active');
+            });
+
+            // Scan Address Button
+            scanAddressBtn.addEventListener('click', function() {
+                const address = btcAddressInput.value.trim();
+                
+                if (!address) {
+                    alert('Please enter a Bitcoin address');
+                    return;
+                }
+                
+                // Simple validation for demo purposes
+                if (!address.match(/^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/)) {
+                    alert('Please enter a valid Bitcoin address');
+                    return;
+                }
+                
+                // Determine risk profile based on address (demo logic)
+                let riskProfile;
+                if (address.length % 3 === 0) {
+                    riskProfile = 'high';
+                } else if (address.length % 2 === 0) {
+                    riskProfile = 'medium';
+                } else {
+                    riskProfile = 'low';
+                }
+                
+                const data = riskData[riskProfile];
+                
+                // Update UI with risk data
+                scoreValue.textContent = data.score;
+                riskLevel.textContent = data.level;
+                
+                // Update risk level color
+                if (riskProfile === 'high') {
+                    riskLevel.style.color = 'var(--danger)';
+                    document.querySelector('.score-circle').style.backgroundColor = '#FFEBEE';
+                    document.querySelector('.score-circle span').style.color = 'var(--danger)';
+                } else if (riskProfile === 'medium') {
+                    riskLevel.style.color = 'var(--warning)';
+                    document.querySelector('.score-circle').style.backgroundColor = '#FFF8E1';
+                    document.querySelector('.score-circle span').style.color = 'var(--warning)';
+                } else {
+                    riskLevel.style.color = 'var(--success)';
+                    document.querySelector('.score-circle').style.backgroundColor = '#E8F5E9';
+                    document.querySelector('.score-circle span').style.color = 'var(--success)';
+                }
+                
+                // Populate risk factors
+                riskFactorsList.innerHTML = '';
+                data.factors.forEach(factor => {
+                    const li = document.createElement('li');
+                    li.textContent = factor;
+                    riskFactorsList.appendChild(li);
+                });
+                
+                // Populate recommendations
+                recommendationsList.innerHTML = '';
+                data.recommendations.forEach(rec => {
+                    const li = document.createElement('li');
+                    li.textContent = rec;
+                    recommendationsList.appendChild(li);
+                });
+                
+                // Show results
+                riskResults.classList.remove('hidden');
+            });
+
+            // Calculate Insurance Premium
+            calculatePremiumBtn.addEventListener('click', function() {
+                const btcAmount = parseFloat(document.getElementById('btcAmount').value);
+                const coverageType = document.getElementById('coverageType').value;
+                
+                if (isNaN(btcAmount) || btcAmount <= 0) {
+                    alert('Please enter a valid BTC amount');
+                    return;
+                }
+                
+                // Calculate premium based on coverage type
+                let premiumRate;
+                switch(coverageType) {
+                    case 'basic':
+                        premiumRate = 0.02; // 2%
+                        break;
+                    case 'advanced':
+                        premiumRate = 0.035; // 3.5%
+                        break;
+                    case 'institutional':
+                        premiumRate = 0.05; // 5%
+                        break;
+                    default:
+                        premiumRate = 0.02;
+                }
+                
+                const premium = btcAmount * premiumRate;
+                const coverageValue = btcAmount * btcPrice;
+                
+                // Update quote display
+                document.getElementById('quoteAmount').textContent = `${btcAmount} BTC`;
+                document.getElementById('quoteType').textContent = 
+                    coverageType.charAt(0).toUpperCase() + coverageType.slice(1);
+                document.getElementById('quotePremium').textContent = `${premium.toFixed(4)} BTC`;
+                document.getElementById('quoteCoverage').textContent = `$${coverageValue.toLocaleString()}`;
+                
+                // Show quote
+                insuranceQuote.classList.remove('hidden');
+            });
+
+            // Purchase Insurance Button
+            purchaseInsuranceBtn.addEventListener('click', function() {
+                alert('Insurance purchase would be processed here in a live implementation');
+            });
+
+            // Deposit Buttons
+            depositBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const vaultCard = this.closest('.vault-card');
+                    const vaultName = vaultCard.querySelector('h3').textContent;
+                    const apy = vaultCard.querySelector('.apy').textContent;
+                    const coverage = vaultCard.querySelectorAll('p')[0].textContent.match(/\d+/)[0];
+                    const unbonding = vaultCard.querySelectorAll('p')[1].textContent.match(/\d+/)[0];
+                    
+                    // Update modal with vault details
+                    document.getElementById('depositVaultName').textContent = `Deposit to ${vaultName}`;
+                    document.getElementById('depositApy').textContent = apy;
+                    document.getElementById('depositCoverage').textContent = `${coverage}%`;
+                    document.getElementById('depositUnbonding').textContent = `${unbonding} day${unbonding !== '1' ? 's' : ''}`;
+                    
+                    // Show modal
+                    depositModal.classList.add('active');
+                });
+            });
+
+            // Close Modals
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    walletModal.classList.remove('active');
+                    depositModal.classList.remove('active');
+                });
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === walletModal) {
+                    walletModal.classList.remove('active');
+                }
+                if (e.target === depositModal) {
+                    depositModal.classList.remove('active');
+                }
+            });
+
+            // Wallet Options
+            walletOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    alert(`In a live implementation, this would connect to ${this.textContent.trim()}`);
+                    walletModal.classList.remove('active');
+                });
+            });
+
+            // Confirm Deposit
+            document.getElementById('confirmDeposit').addEventListener('click', function() {
+                const amount = document.getElementById('depositAmount').value;
+                alert(`Deposit of ${amount} BTC would
