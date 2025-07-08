@@ -84,13 +84,14 @@
         
         /* Layout */
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
         
         .section {
-            padding: 4rem 0;
+            padding: 5rem 0;
         }
         
         .section-title {
@@ -113,7 +114,7 @@
         header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 3rem 0 6rem;
+            padding: 8rem 0 10rem;
             position: relative;
             overflow: hidden;
         }
@@ -165,11 +166,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 0;
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
+            background: rgba(12, 15, 18, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
         }
         
         .navbar-container {
@@ -230,6 +234,7 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            z-index: 1001;
         }
         
         .mobile-menu {
@@ -246,6 +251,7 @@
             justify-content: center;
             transform: translateX(100%);
             transition: var(--transition);
+            padding: 2rem;
         }
         
         .mobile-menu.active {
@@ -715,6 +721,68 @@
             font-weight: normal;
         }
         
+        /* Thank You Message */
+        .thank-you-message {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .thank-you-icon {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 1.5rem;
+        }
+        
+        .thank-you-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .thank-you-text {
+            font-size: 1.1rem;
+            color: rgba(0,0,0,0.7);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Social Sharing */
+        .social-sharing {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .social-share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .twitter { background-color: #1DA1F2; }
+        .facebook { background-color: #4267B2; }
+        .linkedin { background-color: #0077B5; }
+        .youtube { background-color: #FF0000; }
+        .reddit { background-color: #FF5700; }
+        .telegram { background-color: #0088cc; }
+        
         /* Footer */
         footer {
             background-color: var(--darkest);
@@ -850,6 +918,10 @@
             .mobile-menu-btn {
                 display: block;
             }
+            
+            .section {
+                padding: 4rem 0;
+            }
         }
         
         @media (max-width: 768px) {
@@ -858,7 +930,7 @@
             }
             
             header {
-                padding: 2rem 0 3rem;
+                padding: 6rem 0 8rem;
             }
             
             .logo {
@@ -881,10 +953,6 @@
                 grid-template-columns: 1fr;
             }
             
-            .section {
-                padding: 3rem 0;
-            }
-            
             h1 {
                 font-size: 2rem;
             }
@@ -892,11 +960,19 @@
             h2 {
                 font-size: 1.75rem;
             }
+            
+            .risk-score {
+                font-size: 3rem;
+            }
         }
         
         @media (max-width: 576px) {
             .container {
                 padding: 0 1rem;
+            }
+            
+            header {
+                padding: 5rem 0 7rem;
             }
             
             .btn {
@@ -912,6 +988,24 @@
             }
             
             .mobile-menu-link a {
+                font-size: 1.25rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .thank-you-icon {
+                font-size: 3rem;
+            }
+            
+            .thank-you-title {
+                font-size: 1.75rem;
+            }
+            
+            .social-share-btn {
+                width: 45px;
+                height: 45px;
                 font-size: 1.25rem;
             }
         }
@@ -932,15 +1026,15 @@
                 <li><a href="#calculations" class="nav-link">Calculations</a></li>
                 <li><a href="#new-features" class="nav-link">Coming Soon</a></li>
             </ul>
-            <button class="mobile-menu-btn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
     
     <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <button class="mobile-menu-close">
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">
             <i class="fas fa-times"></i>
         </button>
         <ul class="mobile-menu-links">
@@ -1143,7 +1237,7 @@
                     
                     <div class="calc-card">
                         <div class="calc-title">Current BTC Price</div>
-                        <div class="calc-result" id="btcPrice">$108,901.1</div>
+                        <div class="calc-result" id="btcPrice">$60,000</div>
                     </div>
                     
                     <div class="calc-card">
@@ -1163,7 +1257,7 @@
                     <div class="risk-factors">
                         <div class="risk-factor">
                             <span class="factor-label">Coverage Amount</span>
-                            <span class="factor-value" id="coverageAmount">$108,901.1</span>
+                            <span class="factor-value" id="coverageAmount">$100,000</span>
                         </div>
                         <div class="risk-factor">
                             <span class="factor-label">Annual Premium</span>
@@ -1277,7 +1371,7 @@
             
             <p>We'd love to hear your thoughts about our Bitcoin protection platform. Your feedback will help shape our product.</p>
             
-            <form action="https://formspree.io/f/xgvybepe" method="POST" class="feedback-form">
+            <form id="feedbackForm" class="feedback-form">
                 <div class="form-group">
                     <label for="feedback-name">Name <span class="optional-label">(optional)</span></label>
                     <input type="text" id="feedback-name" name="name" class="form-control" placeholder="Your name">
@@ -1297,6 +1391,46 @@
                     <i class="fas fa-paper-plane btn-icon"></i> Submit Feedback
                 </button>
             </form>
+            
+            <!-- Thank You Message (hidden by default) -->
+            <div id="thankYouMessage" class="thank-you-message">
+                <div class="thank-you-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 class="thank-you-title">Thank You!</h2>
+                <p class="thank-you-text">
+                    We appreciate your feedback and will use it to improve our Bitcoin protection platform. 
+                    Our team will review your comments carefully.
+                </p>
+                
+                <div style="margin: 2rem 0;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.25rem;">Help us spread the word!</h3>
+                    <div class="social-sharing">
+                        <a href="https://twitter.com/intent/tweet?text=Check%20out%20Blocentra%20-%20AI-powered%20Bitcoin%20risk%20intelligence%20and%20insurance%20platform&url=https://blocentra.com" class="social-share-btn twitter" target="_blank" rel="noopener">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://blocentra.com" class="social-share-btn facebook" target="_blank" rel="noopener">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://blocentra.com&title=Blocentra%20-%20Bitcoin%20Risk%20Intelligence%20Platform&summary=AI-powered%20protection%20for%20your%20Bitcoin%20assets" class="social-share-btn linkedin" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/yourchannel" class="social-share-btn youtube" target="_blank" rel="noopener">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.reddit.com/submit?url=https://blocentra.com&title=Blocentra%20-%20Bitcoin%20Risk%20Intelligence%20Platform" class="social-share-btn reddit" target="_blank" rel="noopener">
+                            <i class="fab fa-reddit-alien"></i>
+                        </a>
+                        <a href="https://t.me/share/url?url=https://blocentra.com&text=Check%20out%20Blocentra%20-%20AI-powered%20Bitcoin%20protection" class="social-share-btn telegram" target="_blank" rel="noopener">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <p style="color: rgba(0,0,0,0.5); font-size: 0.9rem; margin-top: 2rem;">
+                    © 2025 BlocentraAI. All Rights Reserved.
+                </p>
+            </div>
         </section>
         
         <!-- CTA Section -->
@@ -1387,6 +1521,37 @@
     </footer>
     
     <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        mobileMenuClose.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu-link a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenu.contains(e.target) && e.target !== mobileMenuBtn) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
         // Wallet Scanner
         document.getElementById('scanWalletBtn').addEventListener('click', function() {
             const riskResult = document.getElementById('riskResult');
@@ -1407,7 +1572,7 @@
         const annualPremium = document.getElementById('annualPremium');
         
         // Current BTC price (could be fetched from API in real implementation)
-        const currentBtcPrice = 108901.1;
+        const currentBtcPrice = 100000;
         
         function updateCalculations() {
             const amount = parseFloat(btcAmount.value);
@@ -1446,26 +1611,6 @@
         btcAmount.addEventListener('input', updateCalculations);
         riskProfile.addEventListener('change', updateCalculations);
         
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const mobileMenuClose = document.querySelector('.mobile-menu-close');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            mobileMenu.classList.add('active');
-        });
-        
-        mobileMenuClose.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-menu-link a').forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.classList.remove('active');
-            });
-        });
-        
         // Animate elements when they come into view
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1490,6 +1635,21 @@
                     behavior: 'smooth'
                 });
             });
+        });
+        
+        // Feedback form submission
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hide form and show thank you message
+            this.style.display = 'none';
+            document.getElementById('thankYouMessage').style.display = 'block';
+            
+            // Scroll to thank you message
+            document.getElementById('thankYouMessage').scrollIntoView({ behavior: 'smooth' });
+            
+            // In a real implementation, you would send the form data to a server here
+            // For this demo, we're just showing the thank you message
         });
     </script>
 </body>
