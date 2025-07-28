@@ -60,6 +60,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         
         .logo {
@@ -156,6 +157,81 @@
             transform: translateY(-2px);
         }
         
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 280px;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 99;
+            padding: 80px 30px 30px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .mobile-nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 18px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .mobile-nav-links a:hover, 
+        .mobile-nav-links a.active {
+            background: rgba(37, 99, 235, 0.15);
+            color: var(--primary);
+        }
+        
+        .mobile-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .mobile-auth-buttons .btn {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: transparent;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
         /* Hero Section */
         .hero {
             padding: 100px 0 80px;
@@ -212,16 +288,71 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             position: relative;
             z-index: 2;
+            background: linear-gradient(45deg, #0f172a, #1e293b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            min-height: 400px;
         }
         
-        .hero-image img {
-            width: 100%;
-            display: block;
-            transition: transform 0.5s;
+        .symbols-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
         }
         
-        .hero-image:hover img {
-            transform: scale(1.02);
+        .symbol {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .symbol:hover {
+            transform: translateY(-10px);
+        }
+        
+        .symbol-icon {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+        
+        .bitcoin-icon {
+            background: rgba(247, 147, 26, 0.15);
+            color: #f7931a;
+            box-shadow: 0 0 40px rgba(247, 147, 26, 0.3);
+        }
+        
+        .ai-icon {
+            background: rgba(37, 99, 235, 0.15);
+            color: var(--primary);
+            box-shadow: 0 0 40px rgba(37, 99, 235, 0.3);
+        }
+        
+        .blockchain-icon {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--accent);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+        }
+        
+        .symbol-label {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .symbol-connector {
+            font-size: 40px;
+            color: #64748b;
         }
         
         .value-props {
@@ -478,6 +609,7 @@
             display: flex;
             gap: 20px;
             margin-bottom: 40px;
+            flex-wrap: wrap;
         }
         
         .wallet-input input {
@@ -689,7 +821,6 @@
         
         .insurance-features li i {
             color: var(--success);
-            font-size: 18px;
         }
         
         .vault-stats {
@@ -1147,6 +1278,24 @@
             .nav-links {
                 gap: 25px;
             }
+            
+            .symbols-container {
+                gap: 30px;
+            }
+            
+            .symbol-icon {
+                width: 120px;
+                height: 120px;
+                font-size: 50px;
+            }
+            
+            .symbol-label {
+                font-size: 1.3rem;
+            }
+            
+            .symbol-connector {
+                font-size: 30px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1159,8 +1308,12 @@
                 align-items: center;
             }
             
-            .nav-links {
+            .nav-links, .auth-buttons {
                 display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .value-props {
@@ -1173,6 +1326,15 @@
             
             .api-endpoints {
                 grid-template-columns: 1fr;
+            }
+            
+            .symbols-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .symbol-connector {
+                transform: rotate(90deg);
             }
         }
         
@@ -1204,6 +1366,16 @@
             .score-detail {
                 min-width: 100%;
             }
+            
+            .symbol-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+            
+            .symbol-label {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -1218,6 +1390,11 @@
                     </div>
                     <div class="logo-text">BlocentraAI</div>
                 </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
                 <nav class="nav-links">
                     <a href="#" class="active">Home</a>
                     <a href="#features">Features</a>
@@ -1230,6 +1407,25 @@
                     <button class="btn btn-outline">Log In</button>
                     <button class="btn btn-primary">Sign Up</button>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav" id="mobile-nav">
+            <button class="mobile-menu-close" id="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="mobile-nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#features">Features</a>
+                <a href="#demo">Demo</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="#api">API</a>
+                <a href="#">Enterprise</a>
+            </div>
+            <div class="mobile-auth-buttons">
+                <button class="btn btn-outline">Log In</button>
+                <button class="btn btn-primary">Sign Up</button>
             </div>
         </div>
     </header>
@@ -1253,7 +1449,36 @@
             </div>
             
             <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1620336655052-b57986f5a26a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="BlocentraAI Dashboard">
+                <div class="symbols-container">
+                    <div class="symbol">
+                        <div class="symbol-icon bitcoin-icon">
+                            <i class="fab fa-bitcoin"></i>
+                        </div>
+                        <div class="symbol-label">Bitcoin Security</div>
+                    </div>
+                    
+                    <div class="symbol-connector">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    
+                    <div class="symbol">
+                        <div class="symbol-icon ai-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="symbol-label">AI Intelligence</div>
+                    </div>
+                    
+                    <div class="symbol-connector">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    
+                    <div class="symbol">
+                        <div class="symbol-icon blockchain-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="symbol-label">Blockchain Tech</div>
+                    </div>
+                </div>
             </div>
             
             <div class="value-props">
@@ -1763,10 +1988,6 @@
         </div>
     </section>
 
-
-                    </div>
-                    <div class="testimonial-content">
-                        Integrating BlocentraAI's API has significantly enhanced our withdrawal monitoring systems. The real-time risk scoring has prevented several potential security incidents. Their team's understanding of Bitcoin security is unparalleled.
                     </div>
                 </div>
             </div>
@@ -1848,6 +2069,29 @@
     </footer>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileNav = document.getElementById('mobile-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        mobileMenuClose.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
         // Tab switching functionality
         document.querySelectorAll('.demo-tab').forEach(tab => {
             tab.addEventListener('click', () => {
