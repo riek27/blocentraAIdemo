@@ -6,13 +6,17 @@
     <title>BlocentraAI - Intelligent Bitcoin Protection</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
     <style>
         :root {
-            --primary: #1a3a6c;
-            --secondary: #2a5ca0;
-            --accent: #00c8a0;
+            --primary: #0a1020;
+            --secondary: #1a3a6c;
+            --accent: #00f5d4;
+            --accent-glow: 0 0 10px rgba(0, 245, 212, 0.7), 0 0 20px rgba(0, 245, 212, 0.4);
             --light: #f5f9ff;
-            --dark: #0a1a30;
+            --dark: #050a15;
             --success: #4caf50;
             --warning: #ff9800;
             --danger: #f44336;
@@ -27,7 +31,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #0a1a30 0%, #1a3a6c 100%);
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
             color: var(--light);
             min-height: 100vh;
             padding-bottom: 2rem;
@@ -43,13 +47,13 @@
         
         header {
             padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: sticky;
             top: 0;
-            background: rgba(10, 26, 48, 0.95);
-            z-index: 100;
+            background: rgba(5, 10, 21, 0.9);
+            z-index: 1000;
             backdrop-filter: blur(10px);
             transition: var(--transition);
+            border-bottom: 1px solid rgba(0, 245, 212, 0.1);
         }
         
         .header-content {
@@ -63,22 +67,27 @@
             align-items: center;
             gap: 10px;
             transition: var(--transition);
+            z-index: 1001;
         }
         
         .logo-icon {
             font-size: 2rem;
             color: var(--accent);
             transition: var(--transition);
+            filter: drop-shadow(0 0 5px var(--accent));
         }
         
         .logo-text {
             font-size: 1.5rem;
             font-weight: 700;
             transition: var(--transition);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
         }
         
         .logo-text span {
             color: var(--accent);
+            text-shadow: var(--accent-glow);
         }
         
         .nav-links {
@@ -94,6 +103,7 @@
             transition: color 0.3s;
             position: relative;
             padding: 5px 0;
+            font-size: 1.1rem;
         }
         
         .nav-links a:after {
@@ -105,6 +115,7 @@
             height: 2px;
             background: var(--accent);
             transition: width 0.3s ease;
+            box-shadow: var(--accent-glow);
         }
         
         .nav-links a:hover:after,
@@ -114,6 +125,7 @@
         
         .nav-links a:hover {
             color: var(--accent);
+            text-shadow: var(--accent-glow);
         }
         
         .hamburger {
@@ -122,118 +134,166 @@
             background: none;
             border: none;
             outline: none;
-            z-index: 101;
+            z-index: 1001;
+            width: 30px;
+            height: 30px;
+            position: relative;
         }
         
         .hamburger span {
             display: block;
-            width: 25px;
+            width: 100%;
             height: 3px;
             background: var(--accent);
             margin: 5px 0;
             border-radius: 3px;
             transition: var(--transition);
+            box-shadow: var(--accent-glow);
         }
         
         .hero {
-            padding: 5rem 0;
+            padding: 6rem 0 4rem;
             text-align: center;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s ease-out forwards;
             animation-delay: 0.2s;
+            position: relative;
+            z-index: 2;
         }
         
         .tagline {
             color: var(--accent);
             font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 1rem;
             display: inline-block;
             animation: fadeIn 0.8s ease-out;
+            text-shadow: var(--accent-glow);
+            font-family: 'Orbitron', sans-serif;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             margin-bottom: 1.5rem;
             line-height: 1.2;
             animation: fadeInUp 0.8s ease-out forwards;
             animation-delay: 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             opacity: 0.9;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             line-height: 1.6;
             animation: fadeInUp 0.8s ease-out forwards;
             animation-delay: 0.4s;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .cta-button {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, #00c8a0 100%);
             color: var(--dark);
             border: none;
-            padding: 12px 30px;
+            padding: 15px 35px;
             font-size: 1.1rem;
             font-weight: 600;
-            border-radius: 30px;
+            border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 200, 160, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 245, 212, 0.4);
             animation: fadeInUp 0.8s ease-out forwards;
             animation-delay: 0.5s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .cta-button:hover:before {
+            left: 100%;
         }
         
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 200, 160, 0.4);
-            background: #00e0b5;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 245, 212, 0.6);
         }
         
         .section-title {
             text-align: center;
-            margin: 4rem 0 2rem;
-            font-size: 2.2rem;
+            margin: 5rem 0 3rem;
+            font-size: 2.5rem;
             position: relative;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s ease-out forwards;
+            font-family: 'Orbitron', sans-serif;
         }
         
         .section-title:after {
             content: '';
             display: block;
-            width: 60px;
+            width: 80px;
             height: 4px;
             background: var(--accent);
-            margin: 10px auto;
+            margin: 15px auto;
             border-radius: 2px;
             animation: scaleIn 0.5s ease-out forwards;
             animation-delay: 0.3s;
+            box-shadow: var(--accent-glow);
         }
         
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
         }
         
         .product-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.5s ease-out forwards;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .product-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 245, 212, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
         }
         
         .product-card:nth-child(1) { animation-delay: 0.1s; }
@@ -244,176 +304,242 @@
         .product-card:nth-child(6) { animation-delay: 0.6s; }
         
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(0, 200, 160, 0.3);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 245, 212, 0.3);
+        }
+        
+        .product-card:hover:before {
+            opacity: 1;
         }
         
         .card-header {
-            padding: 1.5rem;
-            background: rgba(0, 200, 160, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.8rem;
+            background: rgba(0, 245, 212, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .product-card:hover .card-header:before {
+            transform: translateX(100%);
         }
         
         .card-icon {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             transition: var(--transition);
+            filter: drop-shadow(0 0 5px var(--accent));
+        }
+        
+        .product-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
         }
         
         .card-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
         }
         
         .card-subtitle {
             opacity: 0.8;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
         
         .card-body {
-            padding: 1.5rem;
+            padding: 1.8rem;
         }
         
         .card-features {
             list-style: none;
-            margin: 1rem 0;
+            margin: 1.2rem 0;
         }
         
         .card-features li {
-            padding: 8px 0;
+            padding: 10px 0;
             display: flex;
             align-items: flex-start;
+            transition: var(--transition);
+        }
+        
+        .card-features li:hover {
+            transform: translateX(5px);
         }
         
         .card-features li:before {
             content: '✓';
             color: var(--accent);
-            margin-right: 10px;
+            margin-right: 12px;
             font-weight: bold;
+            text-shadow: var(--accent-glow);
         }
         
         .status-badge {
             display: inline-block;
-            padding: 5px 12px;
+            padding: 6px 15px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-top: 10px;
+            margin-top: 15px;
         }
         
         .status-active {
             background: rgba(76, 175, 80, 0.2);
             color: var(--success);
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
         }
         
         .status-dev {
             background: rgba(255, 152, 0, 0.2);
             color: var(--warning);
+            box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
         }
         
         .status-planned {
             background: rgba(66, 133, 244, 0.2);
             color: #4285f4;
+            box-shadow: 0 0 10px rgba(66, 133, 244, 0.3);
         }
         
         .simulation-container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 3rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s ease-out forwards;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+        
+        .simulation-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 245, 212, 0.05), transparent);
+            z-index: -1;
         }
         
         .simulation-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
         
         .simulation-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--accent);
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: var(--accent-glow);
         }
         
         .simulation-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 2.5rem;
         }
         
         .input-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
         
         .input-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             font-weight: 500;
+            color: var(--accent);
         }
         
         .input-group input, .input-group select {
             width: 100%;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             color: white;
             font-size: 1rem;
             transition: var(--transition);
         }
         
-        .input-group input:focus {
+        .input-group input:focus, .input-group select:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(0, 200, 160, 0.2);
+            box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.2);
         }
         
         .result-box {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            padding: 2rem;
             height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .result-title {
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: var(--accent-glow);
         }
         
         .risk-meter {
-            height: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin: 1.5rem 0;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            margin: 1.8rem 0;
             overflow: hidden;
             position: relative;
         }
         
         .risk-level {
             height: 100%;
-            border-radius: 10px;
-            transition: width 0.5s;
+            border-radius: 12px;
+            transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .risk-labels {
             display: flex;
             justify-content: space-between;
-            margin-top: 5px;
-            font-size: 0.8rem;
+            margin-top: 8px;
+            font-size: 0.85rem;
             opacity: 0.7;
         }
         
         .metric {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+        }
+        
+        .metric:hover {
+            background: rgba(255, 255, 255, 0.03);
+            padding-left: 10px;
+            padding-right: 10px;
+            margin: 0 -10px;
+            border-radius: 5px;
         }
         
         .metric-value {
@@ -422,19 +548,39 @@
         
         .roadmap {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
         }
         
         .roadmap-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 2rem;
             border-left: 4px solid var(--accent);
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.5s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .roadmap-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 245, 212, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .roadmap-item:hover:before {
+            opacity: 1;
         }
         
         .roadmap-item:nth-child(1) { animation-delay: 0.1s; }
@@ -444,46 +590,62 @@
         .roadmap-phase {
             color: var(--accent);
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: var(--accent-glow);
         }
         
         .roadmap-features {
             list-style: none;
-            margin-top: 1rem;
+            margin-top: 1.2rem;
         }
         
         .roadmap-features li {
-            padding: 5px 0;
+            padding: 8px 0;
             display: flex;
+            transition: var(--transition);
+        }
+        
+        .roadmap-features li:hover {
+            transform: translateX(5px);
         }
         
         .roadmap-features li:before {
             content: '•';
             color: var(--accent);
-            margin-right: 10px;
+            margin-right: 12px;
+            text-shadow: var(--accent-glow);
         }
         
         footer {
             text-align: center;
-            padding: 3rem 0 2rem;
-            margin-top: 4rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 0 3rem;
+            margin-top: 5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 2;
         }
         
         .footer-logo {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s ease-out forwards;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+            text-shadow: var(--accent-glow);
         }
         
         .contact-info {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
             flex-wrap: wrap;
             opacity: 0;
             transform: translateY(20px);
@@ -494,26 +656,39 @@
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             transition: var(--transition);
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 30px;
-            background: rgba(0, 200, 160, 0.1);
+            background: rgba(0, 245, 212, 0.1);
+            border: 1px solid rgba(0, 245, 212, 0.2);
         }
         
         .contact-item:hover {
-            transform: translateY(-3px);
-            background: rgba(0, 200, 160, 0.2);
+            transform: translateY(-5px);
+            background: rgba(0, 245, 212, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 245, 212, 0.2);
         }
         
         .copyright {
             opacity: 0.7;
-            margin-top: 2rem;
-            font-size: 0.9rem;
+            margin-top: 2.5rem;
+            font-size: 0.95rem;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s ease-out forwards;
             animation-delay: 0.4s;
+        }
+        
+        /* 3D Scene Container */
+        #bitcoin-scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
         }
         
         /* Animations */
@@ -538,18 +713,32 @@
             to { transform: scaleX(1); }
         }
         
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
         /* Mobile Navigation */
         .mobile-nav {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 280px;
+            width: 300px;
             height: 100vh;
             background: var(--dark);
-            z-index: 100;
+            z-index: 1000;
             padding: 100px 30px 30px;
             transition: var(--transition);
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            background: rgba(5, 10, 21, 0.98);
         }
         
         .mobile-nav.active {
@@ -565,17 +754,20 @@
         .mobile-nav-links a {
             color: var(--light);
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 500;
-            padding: 10px 15px;
-            border-radius: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
             transition: var(--transition);
+            border-left: 3px solid transparent;
         }
         
         .mobile-nav-links a:hover,
         .mobile-nav-links a.active {
-            background: rgba(0, 200, 160, 0.2);
+            background: rgba(0, 245, 212, 0.1);
             color: var(--accent);
+            border-left: 3px solid var(--accent);
+            text-shadow: var(--accent-glow);
         }
         
         .close-btn {
@@ -585,14 +777,21 @@
             background: none;
             border: none;
             color: var(--light);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
         
         .close-btn:hover {
             color: var(--accent);
             transform: rotate(90deg);
+            background: rgba(0, 245, 212, 0.1);
         }
         
         .overlay {
@@ -601,8 +800,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 99;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
             opacity: 0;
             visibility: hidden;
             transition: var(--transition);
@@ -613,10 +812,36 @@
             visibility: visible;
         }
         
+        /* Demo Link Button */
+        .demo-link {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--accent) 0%, #00c8a0 100%);
+            color: var(--dark);
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(0, 245, 212, 0.4);
+            transition: var(--transition);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        .demo-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 245, 212, 0.6);
+            animation: none;
+        }
+        
         /* Mobile Responsive */
         @media (max-width: 992px) {
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
             
             .nav-links {
@@ -630,15 +855,19 @@
             .simulation-content {
                 grid-template-columns: 1fr;
             }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
             .hero {
-                padding: 3rem 0;
+                padding: 4rem 0 3rem;
             }
             
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .hero p {
@@ -646,7 +875,7 @@
             }
             
             .section-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .logo-text {
@@ -654,13 +883,21 @@
             }
             
             .mobile-nav {
-                width: 250px;
+                width: 280px;
+            }
+            
+            .demo-link {
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                text-align: center;
+                justify-content: center;
             }
         }
         
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .contact-info {
@@ -673,20 +910,29 @@
                 width: 100%;
                 justify-content: center;
             }
+            
+            .simulation-container {
+                padding: 1.5rem;
+            }
+            
+            .card-header, .card-body {
+                padding: 1.5rem;
+            }
         }
         
         /* Scrollbar Styling */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 12px;
         }
         
         ::-webkit-scrollbar-track {
-            background: rgba(10, 26, 48, 0.8);
+            background: rgba(5, 10, 21, 0.8);
         }
         
         ::-webkit-scrollbar-thumb {
             background: var(--accent);
-            border-radius: 5px;
+            border-radius: 6px;
+            border: 2px solid var(--dark);
         }
         
         ::-webkit-scrollbar-thumb:hover {
@@ -698,8 +944,8 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background: var(--accent);
             border-radius: 50%;
             display: flex;
@@ -709,8 +955,10 @@
             transition: var(--transition);
             opacity: 0;
             visibility: hidden;
-            z-index: 99;
-            box-shadow: 0 4px 15px rgba(0, 200, 160, 0.4);
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(0, 245, 212, 0.4);
+            color: var(--dark);
+            font-size: 1.5rem;
         }
         
         .back-to-top.visible {
@@ -719,12 +967,37 @@
         }
         
         .back-to-top:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(0, 245, 212, 0.6);
             background: #00e0b5;
+        }
+        
+        /* Particle Effects */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 245, 212, 0.3);
+            animation: float 8s infinite ease-in-out;
         }
     </style>
 </head>
 <body>
+    <!-- 3D Bitcoin Scene -->
+    <div id="bitcoin-scene"></div>
+    
+    <!-- Particle Effects -->
+    <div class="particles" id="particles"></div>
+    
     <header>
         <div class="container">
             <div class="header-content">
@@ -761,6 +1034,12 @@
     </div>
     <div class="overlay" id="overlay"></div>
 
+    <!-- Demo Link -->
+    <a href="https://riek27.github.io/demo/" class="demo-link" target="_blank">
+        <i class="fas fa-external-link-alt"></i>
+        Live Demo
+    </a>
+
     <!-- Back to Top Button -->
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
@@ -768,7 +1047,7 @@
 
     <section class="hero">
         <div class="container">
-            <div class="tagline">AI-Powered Bitcoin Protection</div>
+            <div class="tagline">Next-Gen AI-Powered Bitcoin Protection</div>
             <h1>Secure Bitcoin with Intelligent Risk Infrastructure</h1>
             <p>BlocentraAI provides AI-native protection, risk intelligence, and capital activation for Bitcoin holders worldwide. Our trustless platform makes Bitcoin safer, insurable, and financially productive.</p>
             <button class="cta-button">Request Demo</button>
@@ -943,7 +1222,7 @@
                             </select>
                         </div>
                         
-                        <button class="cta-button" style="width:100%;">Assess Risk & Generate Quote</button>
+                        <button class="cta-button" style="width:100%; margin-top: 1rem;">Assess Risk & Generate Quote</button>
                     </div>
                     
                     <div class="result-box">
@@ -998,7 +1277,7 @@
             <h2 class="section-title">Product Roadmap</h2>
             <div class="roadmap">
                 <div class="roadmap-item">
-                    <div class="roadmap-phase">PHASE 1: MVP </div>
+                    <div class="roadmap-phase">PHASE 1: MVP LAUNCH</div>
                     <h3>Core Protection Launch</h3>
                     <ul class="roadmap-features">
                         <li>Wallet risk scoring engine</li>
@@ -1009,7 +1288,7 @@
                 </div>
                 
                 <div class="roadmap-item">
-                    <div class="roadmap-phase">PHASE 2: EXPANSION (</div>
+                    <div class="roadmap-phase">PHASE 2: EXPANSION</div>
                     <h3>Institutional Integration</h3>
                     <ul class="roadmap-features">
                         <li>API licensing platform</li>
@@ -1020,7 +1299,7 @@
                 </div>
                 
                 <div class="roadmap-item">
-                    <div class="roadmap-phase">PHASE 3: GLOBAL </div>
+                    <div class="roadmap-phase">PHASE 3: GLOBAL SCALE</div>
                     <h3>Full Ecosystem</h3>
                     <ul class="roadmap-features">
                         <li>Predictive risk models</li>
@@ -1045,11 +1324,11 @@
                 </div>
                 <div class="contact-item">
                     <i class="fab fa-whatsapp"></i>
-                   
+                    <span>+1 (555) 1*******</span>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
-               
+                    <span>San Francisco, CA (Planned)</span>
                 </div>
             </div>
             
@@ -1125,7 +1404,7 @@
         });
         
         // Simple simulation functionality
-        document.querySelector('.cta-button').addEventListener('click', function() {
+        document.querySelector('#simulation .cta-button').addEventListener('click', function() {
             const walletInput = document.getElementById('walletAddress');
             const btcInput = document.getElementById('btcAmount');
             
@@ -1140,9 +1419,32 @@
             const usagePattern = document.getElementById('usagePattern').value;
             
             // Generate random results based on inputs
-            const trustScore = Math.floor(Math.random() * 30) + 70;
-            const premiumRate = (Math.random() * 1.5 + 0.5).toFixed(2);
-            const apy = (Math.random() * 3 + 3).toFixed(2);
+            let trustScore = Math.floor(Math.random() * 30) + 70;
+            let premiumRate = (Math.random() * 1.5 + 0.5).toFixed(2);
+            let apy = (Math.random() * 3 + 3).toFixed(2);
+            
+            // Adjust based on wallet type
+            if (walletType === 'hot') {
+                trustScore -= 10;
+                premiumRate = (parseFloat(premiumRate) + 0.5).toFixed(2);
+            } else if (walletType === 'cold') {
+                trustScore += 5;
+                premiumRate = (parseFloat(premiumRate) - 0.2).toFixed(2);
+            }
+            
+            // Adjust based on usage
+            if (usagePattern === 'exchange') {
+                trustScore -= 5;
+                premiumRate = (parseFloat(premiumRate) + 0.3).toFixed(2);
+            } else if (usagePattern === 'hodl') {
+                trustScore += 5;
+                premiumRate = (parseFloat(premiumRate) - 0.2).toFixed(2);
+            }
+            
+            // Ensure values are within bounds
+            trustScore = Math.max(0, Math.min(100, trustScore));
+            premiumRate = Math.max(0.2, parseFloat(premiumRate)).toFixed(2);
+            apy = Math.max(2, parseFloat(apy)).toFixed(2);
             
             // Update results
             document.querySelector('.metric-value:nth-child(1)').textContent = `${trustScore}/100`;
@@ -1151,28 +1453,41 @@
             const riskLevel = document.querySelector('.risk-level');
             let riskWidth = 25;
             let riskColor = 'var(--success)';
+            let threatText = 'Low';
             
             if(trustScore < 60) {
                 riskWidth = 75;
                 riskColor = 'var(--danger)';
+                threatText = 'High';
             } else if(trustScore < 80) {
                 riskWidth = 50;
                 riskColor = 'var(--warning)';
+                threatText = 'Medium';
             }
             
             riskLevel.style.width = `${riskWidth}%`;
             riskLevel.style.background = riskColor;
             
             // Update other metrics
-            document.querySelector('.metric-value:nth-child(2)').textContent = 
-                trustScore < 60 ? 'High' : (trustScore < 80 ? 'Medium' : 'Low');
+            document.querySelector('.metric-value:nth-child(2)').textContent = threatText;
             document.querySelector('.metric-value:nth-child(2)').style.color = riskColor;
             
             document.querySelector('.metric-value:nth-child(5)').textContent = `${premiumRate}%`;
+            
+            const btcAmount = parseFloat(btcInput.value) || 1.5;
+            const btcValue = btcAmount * 35000; // Assuming $35,000 per BTC
+            document.querySelector('.metric-value:nth-child(6)').textContent = `$${(btcValue * 0.9).toLocaleString()}`;
+            
             document.querySelector('.metric-value:nth-child(7)').textContent = `${apy}% APY`;
             
-            // Show success message
-            alert('Risk assessment complete! View your results below.');
+            // Show success message with animation
+            this.innerHTML = '<i class="fas fa-check-circle"></i> Assessment Complete';
+            this.style.background = 'var(--success)';
+            
+            setTimeout(() => {
+                this.innerHTML = 'Assess Risk & Generate Quote';
+                this.style.background = '';
+            }, 2000);
         });
         
         // Animation triggers when elements come into view
@@ -1194,6 +1509,101 @@
         document.querySelectorAll('.section-title, .product-card, .simulation-container, .roadmap-item, .footer-logo, .contact-info, .copyright').forEach(el => {
             el.style.animationPlayState = 'paused';
             observer.observe(el);
+        });
+        
+        // Create particle effect
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 8;
+                const duration = Math.random() * 5 + 8;
+                const opacity = Math.random() * 0.4 + 0.1;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.opacity = opacity;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize 3D Bitcoin scene
+        function init3DScene() {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('bitcoin-scene').appendChild(renderer.domElement);
+            
+            // Create Bitcoin geometry
+            const geometry = new THREE.CylinderGeometry(1, 1, 0.3, 32);
+            const material = new THREE.MeshPhongMaterial({ 
+                color: 0xF7931A,
+                shininess: 100,
+                specular: 0xFFFFFF
+            });
+            const bitcoin = new THREE.Mesh(geometry, material);
+            scene.add(bitcoin);
+            
+            // Add lights
+            const ambientLight = new THREE.AmbientLight(0x404040);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+            
+            const pointLight = new THREE.PointLight(0x00F5D4, 1, 100);
+            pointLight.position.set(0, 0, 5);
+            scene.add(pointLight);
+            
+            camera.position.z = 5;
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            // Animation
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                bitcoin.rotation.x += 0.005;
+                bitcoin.rotation.y += 0.01;
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+        }
+        
+        // Initialize everything when the page loads
+        window.addEventListener('load', () => {
+            createParticles();
+            
+            // Only initialize 3D scene if WebGL is supported
+            if (typeof WebGLRenderingContext !== 'undefined') {
+                try {
+                    init3DScene();
+                } catch (e) {
+                    console.log('3D rendering not supported', e);
+                }
+            }
         });
     </script>
 </body>
