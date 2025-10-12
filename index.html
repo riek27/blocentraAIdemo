@@ -28,55 +28,47 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f4ff 0%, #fdf2f8 100%);
+            background: var(--white);
             color: var(--gray-900);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         .deck-container {
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .slide {
+            margin-bottom: 4rem;
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            background: var(--white);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--gray-200);
             position: relative;
             overflow: hidden;
         }
 
-        .slide {
+        .slide::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 6px;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 4rem;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            background: var(--white);
-        }
-
-        .slide.active {
-            opacity: 1;
-            z-index: 10;
-        }
-
-        .slide-content {
-            max-width: 1200px;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            background: linear-gradient(to bottom, var(--primary) 0%, var(--accent) 100%);
         }
 
         .slide-header {
+            margin-bottom: 2.5rem;
             text-align: center;
-            margin-bottom: 3rem;
         }
 
         .slide-title {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
@@ -86,18 +78,17 @@
         }
 
         .slide-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 400;
             color: var(--gray-800);
             max-width: 800px;
             margin: 0 auto;
-            line-height: 1.6;
         }
 
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 2.5rem;
             align-items: center;
         }
 
@@ -111,9 +102,10 @@
             background: var(--white);
             border-radius: 16px;
             padding: 2rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--gray-200);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
         }
 
         .card:hover {
@@ -163,12 +155,12 @@
 
         .market-chart {
             width: 100%;
-            height: 300px;
+            height: 200px;
             background: var(--gray-50);
             border-radius: 12px;
             position: relative;
             overflow: hidden;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
 
         .chart-bar {
@@ -177,7 +169,6 @@
             width: 60px;
             background: linear-gradient(to top, var(--primary) 0%, var(--accent) 100%);
             border-radius: 4px 4px 0 0;
-            transition: height 1s ease;
         }
 
         .team-grid {
@@ -223,69 +214,12 @@
             line-height: 1.5;
         }
 
-        .navigation {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 1rem;
-            z-index: 100;
-        }
-
-        .nav-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        .slide-indicators {
-            position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 100;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--gray-200);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .indicator.active {
-            background: var(--primary);
-            transform: scale(1.2);
-        }
-
         .logo {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
-            z-index: 100;
+            margin-bottom: 2rem;
+            text-align: center;
         }
 
         .highlight {
@@ -301,6 +235,51 @@
             background-position: 0 0;
         }
 
+        .cover-container {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f0f4ff 0%, #fdf2f8 100%);
+            border-radius: 24px;
+            margin-bottom: 4rem;
+        }
+
+        .cover-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cover-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--gray-800);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .tagline {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            color: var(--gray-800);
+            border-top: 1px solid var(--gray-200);
+        }
+
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -312,429 +291,343 @@
         }
 
         @media (max-width: 1024px) {
-            .slide {
-                padding: 2rem;
+            .grid-2, .grid-3, .team-grid {
+                grid-template-columns: 1fr;
             }
             
             .slide-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
-            .grid-2, .grid-3, .team-grid {
-                grid-template-columns: 1fr;
+            .cover-title {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="logo">HyperAstraAI</div>
-    
     <div class="deck-container">
-        <!-- Slide 1: Cover / Vision -->
-        <div class="slide active" id="slide-1">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h1 class="slide-title">HyperAstraAI</h1>
-                    <p class="slide-subtitle">Decentralized AI Compute for the Next Generation</p>
-                    <p class="slide-subtitle" style="margin-top: 2rem; font-size: 1.25rem;">Empowering developers and enterprises with affordable, secure, and high-performance AI infrastructure globally.</p>
+        <div class="logo">HyperAstraAI</div>
+        
+        <!-- Cover Slide -->
+        <div class="cover-container">
+            <h1 class="cover-title">HyperAstraAI</h1>
+            <p class="cover-subtitle">Decentralized AI Compute for the Next Generation</p>
+            <p class="cover-subtitle" style="margin-top: 1rem; font-size: 1.25rem;">Empowering developers and enterprises with affordable, secure, and high-performance AI infrastructure globally.</p>
+            <div class="tagline">Investor Pitch Deck</div>
+        </div>
+
+        <!-- Slide 1: Problem -->
+        <div class="slide" id="slide-1">
+            <div class="slide-header">
+                <h2 class="slide-title">The Problem</h2>
+                <p class="slide-subtitle">Current AI infrastructure is broken, expensive, and centralized</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">💰</div>
+                    <h3 class="card-title">Prohibitive Costs</h3>
+                    <p class="card-content">AI development requires massive GPU resources that are extremely expensive. Training large models can cost millions on traditional cloud platforms.</p>
                 </div>
-                <div style="text-align: center; margin-top: 3rem;">
-                    <div style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white; border-radius: 50px; font-weight: 600; font-size: 1.1rem;">
-                        Investor Pitch Deck
-                    </div>
+                <div class="card">
+                    <div class="card-icon">🌐</div>
+                    <h3 class="card-title">Centralized Infrastructure</h3>
+                    <p class="card-content">Cloud providers create bottlenecks with limited availability, high latency, and vendor lock-in that restricts innovation.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3 class="card-title">Scaling Challenges</h3>
+                    <p class="card-content">Small teams and startups struggle to access the computational power needed to compete with well-funded competitors.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 2: Problem -->
+        <!-- Slide 2: Solution -->
         <div class="slide" id="slide-2">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h1 class="slide-title">The Problem</h1>
-                    <p class="slide-subtitle">Current AI infrastructure is broken, expensive, and centralized</p>
+            <div class="slide-header">
+                <h2 class="slide-title">Our Solution</h2>
+                <p class="slide-subtitle">A decentralized GPU network that democratizes AI compute</p>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <div class="card">
+                        <div class="card-icon">🔗</div>
+                        <h3 class="card-title">Decentralized Network</h3>
+                        <p class="card-content">Connecting global GPU resources into a unified, high-performance compute fabric that eliminates single points of failure.</p>
+                    </div>
+                    <div class="card" style="margin-top: 2rem;">
+                        <div class="card-icon">⚡</div>
+                        <h3 class="card-title">High Performance</h3>
+                        <p class="card-content">Low-latency AI training & inference with optimized resource allocation and distributed processing capabilities.</p>
+                    </div>
                 </div>
-                <div class="grid-3">
+                <div>
                     <div class="card">
-                        <div class="card-icon">💰</div>
-                        <h3 class="card-title">Prohibitive Costs</h3>
-                        <p class="card-content">AI development requires massive GPU resources that are extremely expensive. Training large models can cost millions on traditional cloud platforms.</p>
+                        <div class="card-icon">🏷️</div>
+                        <h3 class="card-title">Cost Effective</h3>
+                        <p class="card-content">Up to 70% cost reduction compared to traditional cloud providers by eliminating middlemen and overhead.</p>
                     </div>
-                    <div class="card">
-                        <div class="card-icon">🌐</div>
-                        <h3 class="card-title">Centralized Infrastructure</h3>
-                        <p class="card-content">Cloud providers create bottlenecks with limited availability, high latency, and vendor lock-in that restricts innovation.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">📈</div>
-                        <h3 class="card-title">Scaling Challenges</h3>
-                        <p class="card-content">Small teams and startups struggle to access the computational power needed to compete with well-funded competitors.</p>
+                    <div class="card" style="margin-top: 2rem;">
+                        <div class="card-icon">🔒</div>
+                        <h3 class="card-title">Security & Privacy</h3>
+                        <p class="card-content">Enterprise-grade encryption and privacy-first architecture that keeps your models and data secure.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 3: Solution -->
+        <!-- Slide 3: Product / MVP -->
         <div class="slide" id="slide-3">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h1 class="slide-title">Our Solution</h1>
-                    <p class="slide-subtitle">A decentralized GPU network that democratizes AI compute</p>
-                </div>
-                <div class="grid-2">
-                    <div>
-                        <div class="card">
-                            <div class="card-icon">🔗</div>
-                            <h3 class="card-title">Decentralized Network</h3>
-                            <p class="card-content">Connecting global GPU resources into a unified, high-performance compute fabric that eliminates single points of failure.</p>
-                        </div>
-                        <div class="card" style="margin-top: 2rem;">
-                            <div class="card-icon">⚡</div>
-                            <h3 class="card-title">High Performance</h3>
-                            <p class="card-content">Low-latency AI training & inference with optimized resource allocation and distributed processing capabilities.</p>
-                        </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Product & MVP Status</h2>
+                <p class="slide-subtitle">Building the foundation for decentralized AI infrastructure</p>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <div class="card">
+                        <h3 class="card-title" style="color: var(--success);">✅ Completed</h3>
+                        <p class="card-content" style="margin-top: 1rem;">
+                            <strong>Front-end Platform:</strong> Fully functional, intuitive UI for managing AI jobs, monitoring progress, and accessing results.
+                        </p>
+                        <p class="card-content" style="margin-top: 1rem;">
+                            <strong>User Experience:</strong> Streamlined workflow for submitting training jobs, selecting frameworks, and configuring resources.
+                        </p>
                     </div>
-                    <div>
-                        <div class="card">
-                            <div class="card-icon">🏷️</div>
-                            <h3 class="card-title">Cost Effective</h3>
-                            <p class="card-content">Up to 70% cost reduction compared to traditional cloud providers by eliminating middlemen and overhead.</p>
-                        </div>
-                        <div class="card" style="margin-top: 2rem;">
-                            <div class="card-icon">🔒</div>
-                            <h3 class="card-title">Security & Privacy</h3>
-                            <p class="card-content">Enterprise-grade encryption and privacy-first architecture that keeps your models and data secure.</p>
-                        </div>
+                </div>
+                <div>
+                    <div class="card">
+                        <h3 class="card-title" style="color: var(--warning);">🚧 In Development</h3>
+                        <p class="card-content" style="margin-top: 1rem;">
+                            <strong>Backend Infrastructure:</strong> Core distributed system for connecting and managing GPU resources across the network.
+                        </p>
+                        <p class="card-content" style="margin-top: 1rem;">
+                            <strong>Planned Features:</strong> Automated job scheduling, advanced encryption, multi-cloud integration, and blockchain-based verification.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 4: Product / MVP -->
+        <!-- Slide 4: Market Opportunity -->
         <div class="slide" id="slide-4">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h1 class="slide-title">Product & MVP Status</h1>
-                    <p class="slide-subtitle">Building the foundation for decentralized AI infrastructure</p>
-                </div>
-                <div class="grid-2">
-                    <div>
-                        <div class="card">
-                            <h3 class="card-title" style="color: var(--success);">✅ Completed</h3>
-                            <p class="card-content" style="margin-top: 1rem;">
-                                <strong>Front-end Platform:</strong> Fully functional, intuitive UI for managing AI jobs, monitoring progress, and accessing results.
-                            </p>
-                            <p class="card-content" style="margin-top: 1rem;">
-                                <strong>User Experience:</strong> Streamlined workflow for submitting training jobs, selecting frameworks, and configuring resources.
-                            </p>
-                        </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Market Opportunity</h2>
+                <p class="slide-subtitle">Positioned in a rapidly expanding $25B+ market</p>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <div class="card">
+                        <div class="stat-number">$25B+</div>
+                        <div class="stat-label">AI Compute Market Size</div>
+                        <p class="card-content" style="margin-top: 1rem;">Growing at 30% YoY as AI adoption accelerates across industries.</p>
                     </div>
-                    <div>
-                        <div class="card">
-                            <h3 class="card-title" style="color: var(--warning);">🚧 In Development</h3>
-                            <p class="card-content" style="margin-top: 1rem;">
-                                <strong>Backend Infrastructure:</strong> Core distributed system for connecting and managing GPU resources across the network.
-                            </p>
-                            <p class="card-content" style="margin-top: 1rem;">
-                                <strong>Planned Features:</strong> Automated job scheduling, advanced encryption, multi-cloud integration, and blockchain-based verification.
-                            </p>
+                    <div class="card" style="margin-top: 2rem;">
+                        <h3 class="card-title">Target Customers</h3>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--gray-800); line-height: 1.8;">
+                            <li>AI Startups & Scaleups</li>
+                            <li>Enterprise AI Teams</li>
+                            <li>Research Labs & Academia</li>
+                            <li>AI Consulting Firms</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="card">
+                        <h3 class="card-title">Market Growth</h3>
+                        <div class="market-chart">
+                            <!-- This would be a chart in a real implementation -->
+                            <div class="chart-bar" style="left: 20%; height: 40%;"></div>
+                            <div class="chart-bar" style="left: 30%; height: 60%;"></div>
+                            <div class="chart-bar" style="left: 40%; height: 80%;"></div>
+                            <div class="chart-bar" style="left: 50%; height: 95%;"></div>
+                            <div class="chart-bar" style="left: 60%; height: 100%;"></div>
                         </div>
+                        <p class="card-content" style="text-align: center; margin-top: 1rem;">Projected Market Growth (2023-2027)</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 5: Market Opportunity -->
+        <!-- Slide 5: Traction / Progress -->
         <div class="slide" id="slide-5">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h1 class="slide-title">Market Opportunity</h1>
-                    <p class="slide-subtitle">Positioned in a rapidly expanding $25B+ market</p>
+            <div class="slide-header">
+                <h2 class="slide-title">Traction & Progress</h2>
+                <p class="slide-subtitle">Building momentum with a focused execution plan</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">MVP Development</h3>
+                    <p class="card-content">Front-end completed with backend infrastructure actively in development. Preparing for early adopter onboarding in 3-6 months.</p>
                 </div>
-                <div class="grid-2">
-                    <div>
-                        <div class="card">
-                            <div class="stat-number">$25B+</div>
-                            <div class="stat-label">AI Compute Market Size</div>
-                            <p class="card-content" style="margin-top: 1rem;">Growing at 30% YoY as AI adoption accelerates across industries.</p>
-                        </div>
-                        <div class="card" style="margin-top: 2rem;">
-                            <h3 class="card-title">Target Customers</h3>
-                            <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--gray-800); line-height: 1.8;">
-                                <li>AI Startups & Scaleups</li>
-                                <li>Enterprise AI Teams</li>
-                                <li>Research Labs & Academia</li>
-                                <li>AI Consulting Firms</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card">
-                            <h3 class="card-title">Market Growth</h3>
-                            <div class="market-chart">
-                                <!-- This would be a chart in a real implementation -->
-                                <div class="chart-bar" style="left: 20%; height: 40%;"></div>
-                                <div class="chart-bar" style="left: 30%; height: 60%;"></div>
-                                <div class="chart-bar" style="left: 40%; height: 80%;"></div>
-                                <div class="chart-bar" style="left: 50%; height: 95%;"></div>
-                                <div class="chart-bar" style="left: 60%; height: 100%;"></div>
-                            </div>
-                            <p class="card-content" style="text-align: center; margin-top: 1rem;">Projected Market Growth (2023-2027)</p>
-                        </div>
-                    </div>
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3 class="card-title">Team Assembly</h3>
+                    <p class="card-content">Experienced team with backgrounds in AI, distributed systems, and cloud computing. Proven track record in building scalable platforms.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Market Validation</h3>
+                    <p class="card-content">Strong interest from AI startups and research institutions. Waitlist growing with qualified early adopters.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 6: Traction / Progress -->
+        <!-- Slide 6: Business Model -->
         <div class="slide" id="slide-6">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h1 class="slide-title">Traction & Progress</h1>
-                    <p class="slide-subtitle">Building momentum with a focused execution plan</p>
+            <div class="slide-header">
+                <h2 class="slide-title">Business Model</h2>
+                <p class="slide-subtitle">Multiple revenue streams with scalable pricing</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">💳</div>
+                    <h3 class="card-title">B2B SaaS</h3>
+                    <p class="card-content">Subscription & pay-per-use model for GPU compute with tiered pricing based on resource requirements and usage patterns.</p>
                 </div>
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-icon">🎯</div>
-                        <h3 class="card-title">MVP Development</h3>
-                        <p class="card-content">Front-end completed with backend infrastructure actively in development. Preparing for early adopter onboarding in 3-6 months.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">👥</div>
-                        <h3 class="card-title">Team Assembly</h3>
-                        <p class="card-content">Experienced team with backgrounds in AI, distributed systems, and cloud computing. Proven track record in building scalable platforms.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">📊</div>
-                        <h3 class="card-title">Market Validation</h3>
-                        <p class="card-content">Strong interest from AI startups and research institutions. Waitlist growing with qualified early adopters.</p>
-                    </div>
+                <div class="card">
+                    <div class="card-icon">🏢</div>
+                    <h3 class="card-title">Enterprise Plans</h3>
+                    <p class="card-content">Dedicated resources with SLAs, premium support, and custom integration options for large organizations.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3 class="card-title">Scalable Pricing</h3>
+                    <p class="card-content">Dynamic pricing that becomes more competitive as network effects grow and operational efficiency improves.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 7: Business Model -->
+        <!-- Slide 7: Competitive Advantage -->
         <div class="slide" id="slide-7">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h1 class="slide-title">Business Model</h1>
-                    <p class="slide-subtitle">Multiple revenue streams with scalable pricing</p>
+            <div class="slide-header">
+                <h2 class="slide-title">Competitive Advantage</h2>
+                <p class="slide-subtitle">Differentiated positioning in a crowded market</p>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <div class="card">
+                        <div class="card-icon">🔗</div>
+                        <h3 class="card-title">Decentralized Network</h3>
+                        <p class="card-content">Lower costs & higher availability by leveraging underutilized global GPU resources instead of centralized data centers.</p>
+                    </div>
+                    <div class="card" style="margin-top: 2rem;">
+                        <div class="card-icon">🌍</div>
+                        <h3 class="card-title">Global GPU Access</h3>
+                        <p class="card-content">Low latency, distributed computing power that follows demand patterns across geographic regions.</p>
+                    </div>
                 </div>
-                <div class="grid-3">
+                <div>
                     <div class="card">
-                        <div class="card-icon">💳</div>
-                        <h3 class="card-title">B2B SaaS</h3>
-                        <p class="card-content">Subscription & pay-per-use model for GPU compute with tiered pricing based on resource requirements and usage patterns.</p>
+                        <div class="card-icon">🔒</div>
+                        <h3 class="card-title">Secure & Private</h3>
+                        <p class="card-content">Enterprise-grade encryption with privacy-first architecture that protects sensitive models and training data.</p>
                     </div>
-                    <div class="card">
-                        <div class="card-icon">🏢</div>
-                        <h3 class="card-title">Enterprise Plans</h3>
-                        <p class="card-content">Dedicated resources with SLAs, premium support, and custom integration options for large organizations.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">📈</div>
-                        <h3 class="card-title">Scalable Pricing</h3>
-                        <p class="card-content">Dynamic pricing that becomes more competitive as network effects grow and operational efficiency improves.</p>
+                    <div class="card" style="margin-top: 2rem;">
+                        <div class="card-icon">⚡</div>
+                        <h3 class="card-title">First-Mover Advantage</h3>
+                        <p class="card-content">Pioneering the decentralized AI compute space with a focused approach on solving real customer pain points.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 8: Competitive Advantage -->
+        <!-- Slide 8: Go-to-Market Strategy -->
         <div class="slide" id="slide-8">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h1 class="slide-title">Competitive Advantage</h1>
-                    <p class="slide-subtitle">Differentiated positioning in a crowded market</p>
+            <div class="slide-header">
+                <h2 class="slide-title">Go-to-Market Strategy</h2>
+                <p class="slide-subtitle">Targeted approach to capture early market share</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">🚀</div>
+                    <h3 class="card-title">Early Adopters</h3>
+                    <p class="card-content">Focus on AI startups and small/medium enterprises who feel the cost pain most acutely and value innovation.</p>
                 </div>
-                <div class="grid-2">
-                    <div>
-                        <div class="card">
-                            <div class="card-icon">🔗</div>
-                            <h3 class="card-title">Decentralized Network</h3>
-                            <p class="card-content">Lower costs & higher availability by leveraging underutilized global GPU resources instead of centralized data centers.</p>
-                        </div>
-                        <div class="card" style="margin-top: 2rem;">
-                            <div class="card-icon">🌍</div>
-                            <h3 class="card-title">Global GPU Access</h3>
-                            <p class="card-content">Low latency, distributed computing power that follows demand patterns across geographic regions.</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card">
-                            <div class="card-icon">🔒</div>
-                            <h3 class="card-title">Secure & Private</h3>
-                            <p class="card-content">Enterprise-grade encryption with privacy-first architecture that protects sensitive models and training data.</p>
-                        </div>
-                        <div class="card" style="margin-top: 2rem;">
-                            <div class="card-icon">⚡</div>
-                            <h3 class="card-title">First-Mover Advantage</h3>
-                            <p class="card-content">Pioneering the decentralized AI compute space with a focused approach on solving real customer pain points.</p>
-                        </div>
-                    </div>
+                <div class="card">
+                    <div class="card-icon">🤝</div>
+                    <h3 class="card-title">Strategic Partnerships</h3>
+                    <p class="card-content">Collaborate with research labs, AI incubators, and academic institutions to build credibility and reach.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌐</div>
+                    <h3 class="card-title">Community Building</h3>
+                    <p class="card-content">Developer programs, open source contributions, and online community to drive organic adoption and feedback.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 9: Go-to-Market Strategy -->
+        <!-- Slide 9: Team -->
         <div class="slide" id="slide-9">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h1 class="slide-title">Go-to-Market Strategy</h1>
-                    <p class="slide-subtitle">Targeted approach to capture early market share</p>
+            <div class="slide-header">
+                <h2 class="slide-title">Team</h2>
+                <p class="slide-subtitle">Experienced founders with domain expertise</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">👨‍💻</div>
+                    <h3 class="member-name">Riek Gatluak Geka</h3>
+                    <div class="member-role">CEO & Founder</div>
+                    <p class="member-bio">Fullstack Engineer and Expert in AI infrastructure and machine learning platforms.</p>
                 </div>
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-icon">🚀</div>
-                        <h3 class="card-title">Early Adopters</h3>
-                        <p class="card-content">Focus on AI startups and small/medium enterprises who feel the cost pain most acutely and value innovation.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🤝</div>
-                        <h3 class="card-title">Strategic Partnerships</h3>
-                        <p class="card-content">Collaborate with research labs, AI incubators, and academic institutions to build credibility and reach.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🌐</div>
-                        <h3 class="card-title">Community Building</h3>
-                        <p class="card-content">Developer programs, open source contributions, and online community to drive organic adoption and feedback.</p>
-                    </div>
+                <div class="team-member">
+                    <div class="member-avatar">👩‍🔬</div>
+                    <h3 class="member-name">Fibhor Ruot Pech</h3>
+                    <div class="member-role">CTO & Co-founder</div>
+                    <p class="member-bio">Expert in scalable AI systems.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 10: Team -->
+        <!-- Slide 10: Ask / Next Steps -->
         <div class="slide" id="slide-10">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h1 class="slide-title">Team</h1>
-                    <p class="slide-subtitle">Experienced founders with domain expertise</p>
+            <div class="slide-header">
+                <h2 class="slide-title">Ask & Next Steps</h2>
+                <p class="slide-subtitle">Partnering to accelerate our vision</p>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <div class="card">
+                        <h3 class="card-title">Accelerator Support</h3>
+                        <p class="card-content" style="margin-top: 1rem;">
+                            Seeking mentorship, network access, and guidance to refine our product-market fit and growth strategy.
+                        </p>
+                        <ul style="margin-top: 1.5rem; padding-left: 1.5rem; color: var(--gray-800); line-height: 1.8;">
+                            <li>Technical mentorship for scaling challenges</li>
+                            <li>Connections to enterprise customers</li>
+                            <li>Guidance on fundraising strategy</li>
+                            <li>Product feedback from industry experts</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <div class="member-avatar">👨‍💻</div>
-                        <h3 class="member-name">Alex Chen</h3>
-                        <div class="member-role">CEO & Founder</div>
-                        <p class="member-bio">Former AI infrastructure lead at Google Cloud. 10+ years in distributed systems and machine learning platforms.</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-avatar">👩‍🔬</div>
-                        <h3 class="member-name">Dr. Maya Rodriguez</h3>
-                        <div class="member-role">CTO & Co-founder</div>
-                        <p class="member-bio">PhD in Computer Science from Stanford. Previously led ML research team at OpenAI. Expert in scalable AI systems.</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-avatar">👨‍🚀</div>
-                        <h3 class="member-name">James Kim</h3>
-                        <div class="member-role">Head of Engineering</div>
-                        <p class="member-bio">Built distributed systems at AWS and Microsoft. Specialized in cloud infrastructure and resource optimization.</p>
+                <div>
+                    <div class="card">
+                        <h3 class="card-title">Immediate Goals</h3>
+                        <p class="card-content" style="margin-top: 1rem;">
+                            Our focused execution plan for the coming months:
+                        </p>
+                        <ul style="margin-top: 1.5rem; padding-left: 1.5rem; color: var(--gray-800); line-height: 1.8;">
+                            <li>Finalize backend infrastructure</li>
+                            <li>Onboard pilot users for validation</li>
+                            <li>Prepare for seed funding round</li>
+                            <li>Expand early adopter program</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Slide 11: Ask / Next Steps -->
-        <div class="slide" id="slide-11">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h1 class="slide-title">Ask & Next Steps</h1>
-                    <p class="slide-subtitle">Partnering to accelerate our vision</p>
-                </div>
-                <div class="grid-2">
-                    <div>
-                        <div class="card">
-                            <h3 class="card-title">Accelerator Support</h3>
-                            <p class="card-content" style="margin-top: 1rem;">
-                                Seeking mentorship, network access, and guidance to refine our product-market fit and growth strategy.
-                            </p>
-                            <ul style="margin-top: 1.5rem; padding-left: 1.5rem; color: var(--gray-800); line-height: 1.8;">
-                                <li>Technical mentorship for scaling challenges</li>
-                                <li>Connections to enterprise customers</li>
-                                <li>Guidance on fundraising strategy</li>
-                                <li>Product feedback from industry experts</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card">
-                            <h3 class="card-title">Immediate Goals</h3>
-                            <p class="card-content" style="margin-top: 1rem;">
-                                Our focused execution plan for the coming months:
-                            </p>
-                            <ul style="margin-top: 1.5rem; padding-left: 1.5rem; color: var(--gray-800); line-height: 1.8;">
-                                <li>Finalize backend infrastructure</li>
-                                <li>Onboard pilot users for validation</li>
-                                <li>Prepare for seed funding round</li>
-                                <li>Expand early adopter program</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 3rem;">
-                    <div style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white; border-radius: 50px; font-weight: 600; font-size: 1.1rem;">
-                        Thank You
-                    </div>
-                </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <div class="tagline">Thank You</div>
             </div>
         </div>
-    </div>
 
-    <div class="navigation">
-        <div class="nav-btn" id="prev-btn">←</div>
-        <div class="nav-btn" id="next-btn">→</div>
-    </div>
-
-    <div class="slide-indicators" id="indicators">
-        <!-- Indicators will be added dynamically -->
+        <div class="footer">
+            <p>&copy; 2025 HyperAstraAI. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray-800);">Confidential & Proprietary</p>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const slides = document.querySelectorAll('.slide');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const indicatorsContainer = document.getElementById('indicators');
-            let currentSlide = 0;
-            
-            // Create indicators
-            slides.forEach((_, index) => {
-                const indicator = document.createElement('div');
-                indicator.className = 'indicator';
-                if (index === 0) indicator.classList.add('active');
-                indicator.addEventListener('click', () => goToSlide(index));
-                indicatorsContainer.appendChild(indicator);
-            });
-            
-            // Navigation functions
-            function goToSlide(index) {
-                slides[currentSlide].classList.remove('active');
-                indicatorsContainer.children[currentSlide].classList.remove('active');
-                
-                currentSlide = index;
-                
-                slides[currentSlide].classList.add('active');
-                indicatorsContainer.children[currentSlide].classList.add('active');
-            }
-            
-            function nextSlide() {
-                const nextIndex = (currentSlide + 1) % slides.length;
-                goToSlide(nextIndex);
-            }
-            
-            function prevSlide() {
-                const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
-                goToSlide(prevIndex);
-            }
-            
-            // Event listeners
-            nextBtn.addEventListener('click', nextSlide);
-            prevBtn.addEventListener('click', prevSlide);
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight') nextSlide();
-                if (e.key === 'ArrowLeft') prevSlide();
-            });
-            
             // Add highlight animation to key elements
             const highlights = document.querySelectorAll('.highlight');
             setInterval(() => {
@@ -742,6 +635,24 @@
                     highlight.classList.toggle('active');
                 });
             }, 2000);
+            
+            // Add animation to cards on scroll
+            const cards = document.querySelectorAll('.card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
         });
     </script>
 </body>
