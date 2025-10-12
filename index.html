@@ -3,1607 +3,745 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlocentraAI - Intelligent Bitcoin Protection</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+    <title>HyperAstraAI - Investor Pitch Deck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a1020;
-            --secondary: #1a3a6c;
-            --accent: #00f5d4;
-            --accent-glow: 0 0 10px rgba(0, 245, 212, 0.7), 0 0 20px rgba(0, 245, 212, 0.4);
-            --light: #f5f9ff;
-            --dark: #050a15;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --danger: #f44336;
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --accent: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
-            color: var(--light);
-            min-height: 100vh;
-            padding-bottom: 2rem;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff 0%, #fdf2f8 100%);
+            color: var(--gray-900);
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            padding: 1.5rem 0;
-            position: sticky;
-            top: 0;
-            background: rgba(5, 10, 21, 0.9);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(0, 245, 212, 0.1);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            z-index: 1001;
-        }
-        
-        .logo-icon {
-            font-size: 2rem;
-            color: var(--accent);
-            transition: var(--transition);
-            filter: drop-shadow(0 0 5px var(--accent));
-        }
-        
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            transition: var(--transition);
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-        }
-        
-        .logo-text span {
-            color: var(--accent);
-            text-shadow: var(--accent-glow);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            transition: var(--transition);
-        }
-        
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-            padding: 5px 0;
-            font-size: 1.1rem;
-        }
-        
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-            box-shadow: var(--accent-glow);
-        }
-        
-        .nav-links a:hover:after,
-        .nav-links a.active:after {
-            width: 100%;
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent);
-            text-shadow: var(--accent-glow);
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-            outline: none;
-            z-index: 1001;
-            width: 30px;
-            height: 30px;
-            position: relative;
-        }
-        
-        .hamburger span {
-            display: block;
-            width: 100%;
-            height: 3px;
-            background: var(--accent);
-            margin: 5px 0;
-            border-radius: 3px;
-            transition: var(--transition);
-            box-shadow: var(--accent-glow);
-        }
-        
-        .hero {
-            padding: 6rem 0 4rem;
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease-out forwards;
-            animation-delay: 0.2s;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .tagline {
-            color: var(--accent);
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            font-size: 1rem;
-            display: inline-block;
-            animation: fadeIn 0.8s ease-out;
-            text-shadow: var(--accent-glow);
-            font-family: 'Orbitron', sans-serif;
-        }
-        
-        .hero h1 {
-            font-size: 3.8rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            animation: fadeInUp 0.8s ease-out forwards;
-            animation-delay: 0.3s;
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-            animation: fadeInUp 0.8s ease-out forwards;
-            animation-delay: 0.4s;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .cta-button {
-            background: linear-gradient(135deg, var(--accent) 0%, #00c8a0 100%);
-            color: var(--dark);
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(0, 245, 212, 0.4);
-            animation: fadeInUp 0.8s ease-out forwards;
-            animation-delay: 0.5s;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .cta-button:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-            z-index: -1;
-        }
-        
-        .cta-button:hover:before {
-            left: 100%;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 245, 212, 0.6);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin: 5rem 0 3rem;
-            font-size: 2.5rem;
-            position: relative;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease-out forwards;
-            font-family: 'Orbitron', sans-serif;
-        }
-        
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            margin: 15px auto;
-            border-radius: 2px;
-            animation: scaleIn 0.5s ease-out forwards;
-            animation-delay: 0.3s;
-            box-shadow: var(--accent-glow);
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin: 4rem 0;
-        }
-        
-        .product-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.4s, box-shadow 0.4s;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.5s ease-out forwards;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .product-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 245, 212, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: -1;
-        }
-        
-        .product-card:nth-child(1) { animation-delay: 0.1s; }
-        .product-card:nth-child(2) { animation-delay: 0.2s; }
-        .product-card:nth-child(3) { animation-delay: 0.3s; }
-        .product-card:nth-child(4) { animation-delay: 0.4s; }
-        .product-card:nth-child(5) { animation-delay: 0.5s; }
-        .product-card:nth-child(6) { animation-delay: 0.6s; }
-        
-        .product-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(0, 245, 212, 0.3);
-        }
-        
-        .product-card:hover:before {
-            opacity: 1;
-        }
-        
-        .card-header {
-            padding: 1.8rem;
-            background: rgba(0, 245, 212, 0.08);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card-header:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-        
-        .product-card:hover .card-header:before {
-            transform: translateX(100%);
-        }
-        
-        .card-icon {
-            font-size: 2.8rem;
-            color: var(--accent);
-            margin-bottom: 1.2rem;
-            transition: var(--transition);
-            filter: drop-shadow(0 0 5px var(--accent));
-        }
-        
-        .product-card:hover .card-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-        
-        .card-title {
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-            font-family: 'Orbitron', sans-serif;
-        }
-        
-        .card-subtitle {
-            opacity: 0.8;
-            font-size: 0.95rem;
-        }
-        
-        .card-body {
-            padding: 1.8rem;
-        }
-        
-        .card-features {
-            list-style: none;
-            margin: 1.2rem 0;
-        }
-        
-        .card-features li {
-            padding: 10px 0;
-            display: flex;
-            align-items: flex-start;
-            transition: var(--transition);
-        }
-        
-        .card-features li:hover {
-            transform: translateX(5px);
-        }
-        
-        .card-features li:before {
-            content: '✓';
-            color: var(--accent);
-            margin-right: 12px;
-            font-weight: bold;
-            text-shadow: var(--accent-glow);
-        }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 15px;
-        }
-        
-        .status-active {
-            background: rgba(76, 175, 80, 0.2);
-            color: var(--success);
-            box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
-        }
-        
-        .status-dev {
-            background: rgba(255, 152, 0, 0.2);
-            color: var(--warning);
-            box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
-        }
-        
-        .status-planned {
-            background: rgba(66, 133, 244, 0.2);
-            color: #4285f4;
-            box-shadow: 0 0 10px rgba(66, 133, 244, 0.3);
-        }
-        
-        .simulation-container {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin: 4rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease-out forwards;
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-        }
-        
-        .simulation-container:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(0, 245, 212, 0.05), transparent);
-            z-index: -1;
-        }
-        
-        .simulation-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        
-        .simulation-title {
-            font-size: 1.8rem;
-            color: var(--accent);
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: var(--accent-glow);
-        }
-        
-        .simulation-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-        }
-        
-        .input-group {
-            margin-bottom: 1.8rem;
-        }
-        
-        .input-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
-            color: var(--accent);
-        }
-        
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: white;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        
-        .input-group input:focus, .input-group select:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.2);
-        }
-        
-        .result-box {
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 15px;
-            padding: 2rem;
-            height: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .result-title {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: var(--accent-glow);
-        }
-        
-        .risk-meter {
-            height: 25px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            margin: 1.8rem 0;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .risk-level {
-            height: 100%;
-            border-radius: 12px;
-            transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .risk-labels {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 8px;
-            font-size: 0.85rem;
-            opacity: 0.7;
-        }
-        
-        .metric {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            transition: var(--transition);
-        }
-        
-        .metric:hover {
-            background: rgba(255, 255, 255, 0.03);
-            padding-left: 10px;
-            padding-right: 10px;
-            margin: 0 -10px;
-            border-radius: 5px;
-        }
-        
-        .metric-value {
-            font-weight: 600;
-        }
-        
-        .roadmap {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin: 4rem 0;
-        }
-        
-        .roadmap-item {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            padding: 2rem;
-            border-left: 4px solid var(--accent);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.5s ease-out forwards;
-            position: relative;
-            overflow: hidden;
-            z-index: 2;
-        }
-        
-        .roadmap-item:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 245, 212, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: -1;
-        }
-        
-        .roadmap-item:hover:before {
-            opacity: 1;
-        }
-        
-        .roadmap-item:nth-child(1) { animation-delay: 0.1s; }
-        .roadmap-item:nth-child(2) { animation-delay: 0.2s; }
-        .roadmap-item:nth-child(3) { animation-delay: 0.3s; }
-        
-        .roadmap-phase {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: var(--accent-glow);
-        }
-        
-        .roadmap-features {
-            list-style: none;
-            margin-top: 1.2rem;
-        }
-        
-        .roadmap-features li {
-            padding: 8px 0;
-            display: flex;
-            transition: var(--transition);
-        }
-        
-        .roadmap-features li:hover {
-            transform: translateX(5px);
-        }
-        
-        .roadmap-features li:before {
-            content: '•';
-            color: var(--accent);
-            margin-right: 12px;
-            text-shadow: var(--accent-glow);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 4rem 0 3rem;
-            margin-top: 5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .footer-logo {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease-out forwards;
-            font-family: 'Orbitron', sans-serif;
-        }
-        
-        .footer-logo span {
-            color: var(--accent);
-            text-shadow: var(--accent-glow);
-        }
-        
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease-out forwards;
-            animation-delay: 0.2s;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            padding: 10px 20px;
-            border-radius: 30px;
-            background: rgba(0, 245, 212, 0.1);
-            border: 1px solid rgba(0, 245, 212, 0.2);
-        }
-        
-        .contact-item:hover {
-            transform: translateY(-5px);
-            background: rgba(0, 245, 212, 0.2);
-            box-shadow: 0 5px 15px rgba(0, 245, 212, 0.2);
-        }
-        
-        .copyright {
-            opacity: 0.7;
-            margin-top: 2.5rem;
-            font-size: 0.95rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease-out forwards;
-            animation-delay: 0.4s;
-        }
-        
-        /* 3D Scene Container */
-        #bitcoin-scene {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes scaleIn {
-            from { transform: scaleX(0); }
-            to { transform: scaleX(1); }
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-        
-        /* Mobile Navigation */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
+
+        .deck-container {
+            width: 100vw;
             height: 100vh;
-            background: var(--dark);
-            z-index: 1000;
-            padding: 100px 30px 30px;
-            transition: var(--transition);
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            background: rgba(5, 10, 21, 0.98);
+            position: relative;
+            overflow: hidden;
         }
-        
-        .mobile-nav.active {
-            right: 0;
-        }
-        
-        .mobile-nav-links {
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            background: var(--white);
         }
-        
-        .mobile-nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 500;
-            padding: 12px 20px;
-            border-radius: 10px;
-            transition: var(--transition);
-            border-left: 3px solid transparent;
+
+        .slide.active {
+            opacity: 1;
+            z-index: 10;
         }
-        
-        .mobile-nav-links a:hover,
-        .mobile-nav-links a.active {
-            background: rgba(0, 245, 212, 0.1);
-            color: var(--accent);
-            border-left: 3px solid var(--accent);
-            text-shadow: var(--accent-glow);
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        
-        .close-btn {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 40px;
-            height: 40px;
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .slide-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--gray-800);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--gray-200);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--white);
         }
-        
-        .close-btn:hover {
-            color: var(--accent);
-            transform: rotate(90deg);
-            background: rgba(0, 245, 212, 0.1);
-        }
-        
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-        
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Demo Link Button */
-        .demo-link {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: linear-gradient(135deg, var(--accent) 0%, #00c8a0 100%);
-            color: var(--dark);
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 50px;
+
+        .card-title {
+            font-size: 1.25rem;
             font-weight: 600;
-            box-shadow: 0 5px 20px rgba(0, 245, 212, 0.4);
-            transition: var(--transition);
-            z-index: 100;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .card-content {
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray-800);
+        }
+
+        .market-chart {
+            width: 100%;
+            height: 300px;
+            background: var(--gray-50);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 60px;
+            background: linear-gradient(to top, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 4px 4px 0 0;
+            transition: height 1s ease;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            margin: 0 auto 1rem;
             display: flex;
             align-items: center;
-            gap: 10px;
-            animation: pulse 2s infinite;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--white);
         }
-        
-        .demo-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 245, 212, 0.6);
-            animation: none;
+
+        .member-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
         }
-        
-        /* Mobile Responsive */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .hamburger {
-                display: block;
-            }
-            
-            .simulation-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
+
+        .member-role {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
         }
-        
-        @media (max-width: 768px) {
-            .hero {
-                padding: 4rem 0 3rem;
+
+        .member-bio {
+            color: var(--gray-800);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .slide-indicators {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .logo {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            z-index: 100;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, transparent 50%, rgba(37, 99, 235, 0.1) 50%);
+            background-size: 220% 100%;
+            background-position: 100% 0;
+            transition: all 0.5s ease;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .highlight.active {
+            background-position: 0 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 2rem;
             }
             
-            .hero h1 {
+            .slide-title {
                 font-size: 2.5rem;
             }
             
-            .hero p {
-                font-size: 1.1rem;
+            .grid-2, .grid-3, .team-grid {
+                grid-template-columns: 1fr;
             }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .logo-text {
-                font-size: 1.3rem;
-            }
-            
-            .mobile-nav {
-                width: 280px;
-            }
-            
-            .demo-link {
-                bottom: 20px;
-                left: 20px;
-                right: 20px;
-                text-align: center;
-                justify-content: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-            }
-            
-            .contact-item {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .simulation-container {
-                padding: 1.5rem;
-            }
-            
-            .card-header, .card-body {
-                padding: 1.5rem;
-            }
-        }
-        
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(5, 10, 21, 0.8);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 6px;
-            border: 2px solid var(--dark);
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00e0b5;
-        }
-        
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            opacity: 0;
-            visibility: hidden;
-            z-index: 100;
-            box-shadow: 0 5px 20px rgba(0, 245, 212, 0.4);
-            color: var(--dark);
-            font-size: 1.5rem;
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            transform: translateY(-5px) rotate(5deg);
-            box-shadow: 0 8px 25px rgba(0, 245, 212, 0.6);
-            background: #00e0b5;
-        }
-        
-        /* Particle Effects */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(0, 245, 212, 0.3);
-            animation: float 8s infinite ease-in-out;
         }
     </style>
 </head>
 <body>
-    <!-- 3D Bitcoin Scene -->
-    <div id="bitcoin-scene"></div>
+    <div class="logo">HyperAstraAI</div>
     
-    <!-- Particle Effects -->
-    <div class="particles" id="particles"></div>
-    
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-shield-alt logo-icon"></i>
-                    <div class="logo-text">Bloc<span>entra</span>AI</div>
+    <div class="deck-container">
+        <!-- Slide 1: Cover / Vision -->
+        <div class="slide active" id="slide-1">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <h1 class="slide-title">HyperAstraAI</h1>
+                    <p class="slide-subtitle">Decentralized AI Compute for the Next Generation</p>
+                    <p class="slide-subtitle" style="margin-top: 2rem; font-size: 1.25rem;">Empowering developers and enterprises with affordable, secure, and high-performance AI infrastructure globally.</p>
                 </div>
-                <div class="nav-links">
-                    <a href="#products" class="active">Products</a>
-                    <a href="#simulation">Demo</a>
-                    <a href="#roadmap">Roadmap</a>
-                    <a href="#contact">Contact</a>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <div style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white; border-radius: 50px; font-weight: 600; font-size: 1.1rem;">
+                        Investor Pitch Deck
+                    </div>
                 </div>
-                <button class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </div>
-    </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <button class="close-btn" id="closeBtn">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="mobile-nav-links">
-            <a href="#products" class="active">Products</a>
-            <a href="#simulation">Demo</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="#contact">Contact</a>
+        <!-- Slide 2: Problem -->
+        <div class="slide" id="slide-2">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <h1 class="slide-title">The Problem</h1>
+                    <p class="slide-subtitle">Current AI infrastructure is broken, expensive, and centralized</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon">💰</div>
+                        <h3 class="card-title">Prohibitive Costs</h3>
+                        <p class="card-content">AI development requires massive GPU resources that are extremely expensive. Training large models can cost millions on traditional cloud platforms.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🌐</div>
+                        <h3 class="card-title">Centralized Infrastructure</h3>
+                        <p class="card-content">Cloud providers create bottlenecks with limited availability, high latency, and vendor lock-in that restricts innovation.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📈</div>
+                        <h3 class="card-title">Scaling Challenges</h3>
+                        <p class="card-content">Small teams and startups struggle to access the computational power needed to compete with well-funded competitors.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Solution -->
+        <div class="slide" id="slide-3">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <h1 class="slide-title">Our Solution</h1>
+                    <p class="slide-subtitle">A decentralized GPU network that democratizes AI compute</p>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <div class="card">
+                            <div class="card-icon">🔗</div>
+                            <h3 class="card-title">Decentralized Network</h3>
+                            <p class="card-content">Connecting global GPU resources into a unified, high-performance compute fabric that eliminates single points of failure.</p>
+                        </div>
+                        <div class="card" style="margin-top: 2rem;">
+                            <div class="card-icon">⚡</div>
+                            <h3 class="card-title">High Performance</h3>
+                            <p class="card-content">Low-latency AI training & inference with optimized resource allocation and distributed processing capabilities.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card">
+                            <div class="card-icon">🏷️</div>
+                            <h3 class="card-title">Cost Effective</h3>
+                            <p class="card-content">Up to 70% cost reduction compared to traditional cloud providers by eliminating middlemen and overhead.</p>
+                        </div>
+                        <div class="card" style="margin-top: 2rem;">
+                            <div class="card-icon">🔒</div>
+                            <h3 class="card-title">Security & Privacy</h3>
+                            <p class="card-content">Enterprise-grade encryption and privacy-first architecture that keeps your models and data secure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Product / MVP -->
+        <div class="slide" id="slide-4">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <h1 class="slide-title">Product & MVP Status</h1>
+                    <p class="slide-subtitle">Building the foundation for decentralized AI infrastructure</p>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <div class="card">
+                            <h3 class="card-title" style="color: var(--success);">✅ Completed</h3>
+                            <p class="card-content" style="margin-top: 1rem;">
+                                <strong>Front-end Platform:</strong> Fully functional, intuitive UI for managing AI jobs, monitoring progress, and accessing results.
+                            </p>
+                            <p class="card-content" style="margin-top: 1rem;">
+                                <strong>User Experience:</strong> Streamlined workflow for submitting training jobs, selecting frameworks, and configuring resources.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card">
+                            <h3 class="card-title" style="color: var(--warning);">🚧 In Development</h3>
+                            <p class="card-content" style="margin-top: 1rem;">
+                                <strong>Backend Infrastructure:</strong> Core distributed system for connecting and managing GPU resources across the network.
+                            </p>
+                            <p class="card-content" style="margin-top: 1rem;">
+                                <strong>Planned Features:</strong> Automated job scheduling, advanced encryption, multi-cloud integration, and blockchain-based verification.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Market Opportunity -->
+        <div class="slide" id="slide-5">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <h1 class="slide-title">Market Opportunity</h1>
+                    <p class="slide-subtitle">Positioned in a rapidly expanding $25B+ market</p>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <div class="card">
+                            <div class="stat-number">$25B+</div>
+                            <div class="stat-label">AI Compute Market Size</div>
+                            <p class="card-content" style="margin-top: 1rem;">Growing at 30% YoY as AI adoption accelerates across industries.</p>
+                        </div>
+                        <div class="card" style="margin-top: 2rem;">
+                            <h3 class="card-title">Target Customers</h3>
+                            <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--gray-800); line-height: 1.8;">
+                                <li>AI Startups & Scaleups</li>
+                                <li>Enterprise AI Teams</li>
+                                <li>Research Labs & Academia</li>
+                                <li>AI Consulting Firms</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card">
+                            <h3 class="card-title">Market Growth</h3>
+                            <div class="market-chart">
+                                <!-- This would be a chart in a real implementation -->
+                                <div class="chart-bar" style="left: 20%; height: 40%;"></div>
+                                <div class="chart-bar" style="left: 30%; height: 60%;"></div>
+                                <div class="chart-bar" style="left: 40%; height: 80%;"></div>
+                                <div class="chart-bar" style="left: 50%; height: 95%;"></div>
+                                <div class="chart-bar" style="left: 60%; height: 100%;"></div>
+                            </div>
+                            <p class="card-content" style="text-align: center; margin-top: 1rem;">Projected Market Growth (2023-2027)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Traction / Progress -->
+        <div class="slide" id="slide-6">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <h1 class="slide-title">Traction & Progress</h1>
+                    <p class="slide-subtitle">Building momentum with a focused execution plan</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon">🎯</div>
+                        <h3 class="card-title">MVP Development</h3>
+                        <p class="card-content">Front-end completed with backend infrastructure actively in development. Preparing for early adopter onboarding in 3-6 months.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">👥</div>
+                        <h3 class="card-title">Team Assembly</h3>
+                        <p class="card-content">Experienced team with backgrounds in AI, distributed systems, and cloud computing. Proven track record in building scalable platforms.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📊</div>
+                        <h3 class="card-title">Market Validation</h3>
+                        <p class="card-content">Strong interest from AI startups and research institutions. Waitlist growing with qualified early adopters.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Business Model -->
+        <div class="slide" id="slide-7">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <h1 class="slide-title">Business Model</h1>
+                    <p class="slide-subtitle">Multiple revenue streams with scalable pricing</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon">💳</div>
+                        <h3 class="card-title">B2B SaaS</h3>
+                        <p class="card-content">Subscription & pay-per-use model for GPU compute with tiered pricing based on resource requirements and usage patterns.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏢</div>
+                        <h3 class="card-title">Enterprise Plans</h3>
+                        <p class="card-content">Dedicated resources with SLAs, premium support, and custom integration options for large organizations.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📈</div>
+                        <h3 class="card-title">Scalable Pricing</h3>
+                        <p class="card-content">Dynamic pricing that becomes more competitive as network effects grow and operational efficiency improves.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Competitive Advantage -->
+        <div class="slide" id="slide-8">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <h1 class="slide-title">Competitive Advantage</h1>
+                    <p class="slide-subtitle">Differentiated positioning in a crowded market</p>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <div class="card">
+                            <div class="card-icon">🔗</div>
+                            <h3 class="card-title">Decentralized Network</h3>
+                            <p class="card-content">Lower costs & higher availability by leveraging underutilized global GPU resources instead of centralized data centers.</p>
+                        </div>
+                        <div class="card" style="margin-top: 2rem;">
+                            <div class="card-icon">🌍</div>
+                            <h3 class="card-title">Global GPU Access</h3>
+                            <p class="card-content">Low latency, distributed computing power that follows demand patterns across geographic regions.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card">
+                            <div class="card-icon">🔒</div>
+                            <h3 class="card-title">Secure & Private</h3>
+                            <p class="card-content">Enterprise-grade encryption with privacy-first architecture that protects sensitive models and training data.</p>
+                        </div>
+                        <div class="card" style="margin-top: 2rem;">
+                            <div class="card-icon">⚡</div>
+                            <h3 class="card-title">First-Mover Advantage</h3>
+                            <p class="card-content">Pioneering the decentralized AI compute space with a focused approach on solving real customer pain points.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Go-to-Market Strategy -->
+        <div class="slide" id="slide-9">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <h1 class="slide-title">Go-to-Market Strategy</h1>
+                    <p class="slide-subtitle">Targeted approach to capture early market share</p>
+                </div>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon">🚀</div>
+                        <h3 class="card-title">Early Adopters</h3>
+                        <p class="card-content">Focus on AI startups and small/medium enterprises who feel the cost pain most acutely and value innovation.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🤝</div>
+                        <h3 class="card-title">Strategic Partnerships</h3>
+                        <p class="card-content">Collaborate with research labs, AI incubators, and academic institutions to build credibility and reach.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🌐</div>
+                        <h3 class="card-title">Community Building</h3>
+                        <p class="card-content">Developer programs, open source contributions, and online community to drive organic adoption and feedback.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Team -->
+        <div class="slide" id="slide-10">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <h1 class="slide-title">Team</h1>
+                    <p class="slide-subtitle">Experienced founders with domain expertise</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-avatar">👨‍💻</div>
+                        <h3 class="member-name">Alex Chen</h3>
+                        <div class="member-role">CEO & Founder</div>
+                        <p class="member-bio">Former AI infrastructure lead at Google Cloud. 10+ years in distributed systems and machine learning platforms.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">👩‍🔬</div>
+                        <h3 class="member-name">Dr. Maya Rodriguez</h3>
+                        <div class="member-role">CTO & Co-founder</div>
+                        <p class="member-bio">PhD in Computer Science from Stanford. Previously led ML research team at OpenAI. Expert in scalable AI systems.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">👨‍🚀</div>
+                        <h3 class="member-name">James Kim</h3>
+                        <div class="member-role">Head of Engineering</div>
+                        <p class="member-bio">Built distributed systems at AWS and Microsoft. Specialized in cloud infrastructure and resource optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Ask / Next Steps -->
+        <div class="slide" id="slide-11">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <h1 class="slide-title">Ask & Next Steps</h1>
+                    <p class="slide-subtitle">Partnering to accelerate our vision</p>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <div class="card">
+                            <h3 class="card-title">Accelerator Support</h3>
+                            <p class="card-content" style="margin-top: 1rem;">
+                                Seeking mentorship, network access, and guidance to refine our product-market fit and growth strategy.
+                            </p>
+                            <ul style="margin-top: 1.5rem; padding-left: 1.5rem; color: var(--gray-800); line-height: 1.8;">
+                                <li>Technical mentorship for scaling challenges</li>
+                                <li>Connections to enterprise customers</li>
+                                <li>Guidance on fundraising strategy</li>
+                                <li>Product feedback from industry experts</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card">
+                            <h3 class="card-title">Immediate Goals</h3>
+                            <p class="card-content" style="margin-top: 1rem;">
+                                Our focused execution plan for the coming months:
+                            </p>
+                            <ul style="margin-top: 1.5rem; padding-left: 1.5rem; color: var(--gray-800); line-height: 1.8;">
+                                <li>Finalize backend infrastructure</li>
+                                <li>Onboard pilot users for validation</li>
+                                <li>Prepare for seed funding round</li>
+                                <li>Expand early adopter program</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <div style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white; border-radius: 50px; font-weight: 600; font-size: 1.1rem;">
+                        Thank You
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="overlay" id="overlay"></div>
 
-    <!-- Demo Link -->
-    <a href="https://riek27.github.io/demo/" class="demo-link" target="_blank">
-        <i class="fas fa-external-link-alt"></i>
-        Live Demo
-    </a>
-
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
+    <div class="navigation">
+        <div class="nav-btn" id="prev-btn">←</div>
+        <div class="nav-btn" id="next-btn">→</div>
     </div>
 
-    <section class="hero">
-        <div class="container">
-            <div class="tagline">Next-Gen AI-Powered Bitcoin Protection</div>
-            <h1>Secure Bitcoin with Intelligent Risk Infrastructure</h1>
-            <p>BlocentraAI provides AI-native protection, risk intelligence, and capital activation for Bitcoin holders worldwide. Our trustless platform makes Bitcoin safer, insurable, and financially productive.</p>
-            <button class="cta-button">Request Demo</button>
-        </div>
-    </section>
-
-    <section id="products">
-        <div class="container">
-            <h2 class="section-title">Core Products</h2>
-            <div class="products-grid">
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <div class="card-header">
-                        <i class="fas fa-shield-alt card-icon"></i>
-                        <h3 class="card-title">AI-Powered Bitcoin Insurance</h3>
-                        <div class="card-subtitle">Dynamic protection for wallets & protocols</div>
-                        <span class="status-badge status-active">MVP Available</span>
-                    </div>
-                    <div class="card-body">
-                        <p>AI-driven insurance policies covering:</p>
-                        <ul class="card-features">
-                            <li>Wallet compromises & key theft</li>
-                            <li>Smart contract failures</li>
-                            <li>Bridge vulnerabilities</li>
-                            <li>Phishing attacks</li>
-                        </ul>
-                        <p>Dynamic pricing based on real-time risk assessment.</p>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="card-header">
-                        <i class="fas fa-brain card-icon"></i>
-                        <h3 class="card-title">BTC Risk Intelligence Engine</h3>
-                        <div class="card-subtitle">Real-time wallet scoring & threat detection</div>
-                        <span class="status-badge status-active">MVP Available</span>
-                    </div>
-                    <div class="card-body">
-                        <p>Continuous analysis of Bitcoin activity:</p>
-                        <ul class="card-features">
-                            <li>Wallet trust scoring (0-100)</li>
-                            <li>Behavioral anomaly detection</li>
-                            <li>Threat signal monitoring</li>
-                            <li>Predictive risk modeling</li>
-                        </ul>
-                        <p>Tailored to Bitcoin's UTXO architecture.</p>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="card-header">
-                        <i class="fas fa-vault card-icon"></i>
-                        <h3 class="card-title">BTCFi Vaults</h3>
-                        <div class="card-subtitle">Insured yield for idle Bitcoin</div>
-                        <span class="status-badge status-dev">In Development</span>
-                    </div>
-                    <div class="card-body">
-                        <p>Activate idle BTC with protection:</p>
-                        <ul class="card-features">
-                            <li>Risk-weighted yield pools</li>
-                            <li>AI-vetted lending protocols</li>
-                            <li>Integrated insurance coverage</li>
-                            <li>Real-time protection scoring</li>
-                        </ul>
-                        <p>Non-custodial design preserves ownership.</p>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <div class="card-header">
-                        <i class="fas fa-chart-line card-icon"></i>
-                        <h3 class="card-title">Predictive Risk Models</h3>
-                        <div class="card-subtitle">Anticipate systemic threats</div>
-                        <span class="status-badge status-dev">In Development</span>
-                    </div>
-                    <div class="card-body">
-                        <p>Advanced forecasting algorithms:</p>
-                        <ul class="card-features">
-                            <li>Black swan event prediction</li>
-                            <li>Protocol failure forecasting</li>
-                            <li>Market liquidation risks</li>
-                            <li>Bridge exploit detection</li>
-                        </ul>
-                        <p>Enables preemptive risk mitigation.</p>
-                    </div>
-                </div>
-                
-                <!-- Product 5 -->
-                <div class="product-card">
-                    <div class="card-header">
-                        <i class="fas fa-cogs card-icon"></i>
-                        <h3 class="card-title">B2B API Ecosystem</h3>
-                        <div class="card-subtitle">Integrate protection into any platform</div>
-                        <span class="status-badge status-dev">In Development</span>
-                    </div>
-                    <div class="card-body">
-                        <p>Modular APIs for integration:</p>
-                        <ul class="card-features">
-                            <li>Real-time risk scoring API</li>
-                            <li>Fraud intelligence feeds</li>
-                            <li>Claims management system</li>
-                            <li>Wallet reputation tracking</li>
-                        </ul>
-                        <p>For exchanges, wallets & DeFi protocols.</p>
-                    </div>
-                </div>
-                
-                <!-- Product 6 -->
-                <div class="product-card">
-                    <div class="card-header">
-                        <i class="fas fa-building card-icon"></i>
-                        <h3 class="card-title">Institutional Compliance</h3>
-                        <div class="card-subtitle">Regulatory-ready dashboards</div>
-                        <span class="status-badge status-planned">Q3 2025</span>
-                    </div>
-                    <div class="card-body">
-                        <p>Tools for institutional adoption:</p>
-                        <ul class="card-features">
-                            <li>Compliance dashboards</li>
-                            <li>Auditable risk analytics</li>
-                            <li>AML/KYC integration</li>
-                            <li>Regulatory reporting</li>
-                        </ul>
-                        <p>Tailored for funds, custodians & exchanges.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="simulation">
-        <div class="container">
-            <h2 class="section-title">Risk Simulation Demo</h2>
-            <div class="simulation-container">
-                <div class="simulation-header">
-                    <h3 class="simulation-title">Bitcoin Wallet Risk Assessment</h3>
-                    <div class="status-badge status-active">Live Simulation</div>
-                </div>
-                
-                <div class="simulation-content">
-                    <div class="input-section">
-                        <div class="input-group">
-                            <label for="walletAddress">Bitcoin Wallet Address</label>
-                            <input type="text" id="walletAddress" placeholder="bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq">
-                        </div>
-                        
-                        <div class="input-group">
-                            <label for="btcAmount">BTC Amount</label>
-                            <input type="number" id="btcAmount" placeholder="1.5" min="0.001" step="0.001">
-                        </div>
-                        
-                        <div class="input-group">
-                            <label for="walletType">Wallet Type</label>
-                            <select id="walletType">
-                                <option value="cold">Cold Storage</option>
-                                <option value="hot">Hot Wallet</option>
-                                <option value="multisig">Multi-signature</option>
-                                <option value="custodial">Custodial</option>
-                            </select>
-                        </div>
-                        
-                        <div class="input-group">
-                            <label for="usagePattern">Usage Pattern</label>
-                            <select id="usagePattern">
-                                <option value="hodl">Long-term holding</option>
-                                <option value="active">Regular transactions</option>
-                                <option value="defi">BTCFi participation</option>
-                                <option value="exchange">Exchange trading</option>
-                            </select>
-                        </div>
-                        
-                        <button class="cta-button" style="width:100%; margin-top: 1rem;">Assess Risk & Generate Quote</button>
-                    </div>
-                    
-                    <div class="result-box">
-                        <h3 class="result-title">Risk Assessment Report</h3>
-                        <div class="metric">
-                            <span>Wallet Trust Score</span>
-                            <span class="metric-value">87/100</span>
-                        </div>
-                        
-                        <div class="metric">
-                            <span>Threat Level</span>
-                            <span class="metric-value" style="color:var(--success)">Low</span>
-                        </div>
-                        
-                        <div class="risk-meter">
-                            <div class="risk-level" style="width: 25%; background: var(--success);"></div>
-                        </div>
-                        <div class="risk-labels">
-                            <span>Low</span>
-                            <span>Medium</span>
-                            <span>High</span>
-                            <span>Critical</span>
-                        </div>
-                        
-                        <div class="metric">
-                            <span>Detected Anomalies</span>
-                            <span class="metric-value" style="color:var(--success)">None</span>
-                        </div>
-                        
-                        <div class="metric">
-                            <span>Insurance Premium (Annual)</span>
-                            <span class="metric-value">1.2%</span>
-                        </div>
-                        
-                        <div class="metric">
-                            <span>Recommended Coverage</span>
-                            <span class="metric-value">$52,800</span>
-                        </div>
-                        
-                        <div class="metric">
-                            <span>BTCFi Yield Opportunity</span>
-                            <span class="metric-value" style="color:var(--accent)">4.8% APY</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="roadmap">
-        <div class="container">
-            <h2 class="section-title">Product Roadmap</h2>
-            <div class="roadmap">
-                <div class="roadmap-item">
-                    <div class="roadmap-phase">PHASE 1: MVP LAUNCH</div>
-                    <h3>Core Protection Launch</h3>
-                    <ul class="roadmap-features">
-                        <li>Wallet risk scoring engine</li>
-                        <li>Basic insurance prototype</li>
-                        <li>BTCFi vault testnet</li>
-                        <li>Retail user onboarding</li>
-                    </ul>
-                </div>
-                
-                <div class="roadmap-item">
-                    <div class="roadmap-phase">PHASE 2: EXPANSION</div>
-                    <h3>Institutional Integration</h3>
-                    <ul class="roadmap-features">
-                        <li>API licensing platform</li>
-                        <li>Institutional dashboards</li>
-                        <li>Smart contract coverage</li>
-                        <li>US regulatory compliance</li>
-                    </ul>
-                </div>
-                
-                <div class="roadmap-item">
-                    <div class="roadmap-phase">PHASE 3: GLOBAL SCALE</div>
-                    <h3>Full Ecosystem</h3>
-                    <ul class="roadmap-features">
-                        <li>Predictive risk models</li>
-                        <li>Global compliance suite</li>
-                        <li>B2G risk infrastructure</li>
-                        <li>Advanced vault products</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-logo">Bloc<span>entra</span>AI</div>
-            <p>Securing the Future of Bitcoin with Intelligence, Safety, and Yield</p>
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>contact@blocentraai.ai</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>+1 (555) 1*******</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>San Francisco, CA (Planned)</span>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                © 2025 BlocentraAI. All rights reserved. This is a simulated MVP for demonstration purposes.
-            </div>
-        </div>
-    </footer>
+    <div class="slide-indicators" id="indicators">
+        <!-- Indicators will be added dynamically -->
+    </div>
 
     <script>
-        // Mobile Navigation Toggle
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobileNav');
-        const closeBtn = document.getElementById('closeBtn');
-        const overlay = document.getElementById('overlay');
-        
-        hamburger.addEventListener('click', () => {
-            mobileNav.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        closeBtn.addEventListener('click', closeMobileNav);
-        overlay.addEventListener('click', closeMobileNav);
-        
-        function closeMobileNav() {
-            mobileNav.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        // Mobile menu links
-        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                closeMobileNav();
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const indicatorsContainer = document.getElementById('indicators');
+            let currentSlide = 0;
+            
+            // Create indicators
+            slides.forEach((_, index) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator';
+                if (index === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => goToSlide(index));
+                indicatorsContainer.appendChild(indicator);
             });
-        });
-        
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+            
+            // Navigation functions
+            function goToSlide(index) {
+                slides[currentSlide].classList.remove('active');
+                indicatorsContainer.children[currentSlide].classList.remove('active');
                 
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                currentSlide = index;
                 
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+                slides[currentSlide].classList.add('active');
+                indicatorsContainer.children[currentSlide].classList.add('active');
+            }
+            
+            function nextSlide() {
+                const nextIndex = (currentSlide + 1) % slides.length;
+                goToSlide(nextIndex);
+            }
+            
+            function prevSlide() {
+                const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+                goToSlide(prevIndex);
+            }
+            
+            // Event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') nextSlide();
+                if (e.key === 'ArrowLeft') prevSlide();
             });
-        });
-        
-        // Back to Top Button
-        const backToTopBtn = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-        });
-        
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Simple simulation functionality
-        document.querySelector('#simulation .cta-button').addEventListener('click', function() {
-            const walletInput = document.getElementById('walletAddress');
-            const btcInput = document.getElementById('btcAmount');
             
-            // Basic validation
-            if(!walletInput.value || !btcInput.value) {
-                alert('Please enter wallet address and BTC amount');
-                return;
-            }
-            
-            // Simulate risk assessment
-            const walletType = document.getElementById('walletType').value;
-            const usagePattern = document.getElementById('usagePattern').value;
-            
-            // Generate random results based on inputs
-            let trustScore = Math.floor(Math.random() * 30) + 70;
-            let premiumRate = (Math.random() * 1.5 + 0.5).toFixed(2);
-            let apy = (Math.random() * 3 + 3).toFixed(2);
-            
-            // Adjust based on wallet type
-            if (walletType === 'hot') {
-                trustScore -= 10;
-                premiumRate = (parseFloat(premiumRate) + 0.5).toFixed(2);
-            } else if (walletType === 'cold') {
-                trustScore += 5;
-                premiumRate = (parseFloat(premiumRate) - 0.2).toFixed(2);
-            }
-            
-            // Adjust based on usage
-            if (usagePattern === 'exchange') {
-                trustScore -= 5;
-                premiumRate = (parseFloat(premiumRate) + 0.3).toFixed(2);
-            } else if (usagePattern === 'hodl') {
-                trustScore += 5;
-                premiumRate = (parseFloat(premiumRate) - 0.2).toFixed(2);
-            }
-            
-            // Ensure values are within bounds
-            trustScore = Math.max(0, Math.min(100, trustScore));
-            premiumRate = Math.max(0.2, parseFloat(premiumRate)).toFixed(2);
-            apy = Math.max(2, parseFloat(apy)).toFixed(2);
-            
-            // Update results
-            document.querySelector('.metric-value:nth-child(1)').textContent = `${trustScore}/100`;
-            
-            // Update risk meter
-            const riskLevel = document.querySelector('.risk-level');
-            let riskWidth = 25;
-            let riskColor = 'var(--success)';
-            let threatText = 'Low';
-            
-            if(trustScore < 60) {
-                riskWidth = 75;
-                riskColor = 'var(--danger)';
-                threatText = 'High';
-            } else if(trustScore < 80) {
-                riskWidth = 50;
-                riskColor = 'var(--warning)';
-                threatText = 'Medium';
-            }
-            
-            riskLevel.style.width = `${riskWidth}%`;
-            riskLevel.style.background = riskColor;
-            
-            // Update other metrics
-            document.querySelector('.metric-value:nth-child(2)').textContent = threatText;
-            document.querySelector('.metric-value:nth-child(2)').style.color = riskColor;
-            
-            document.querySelector('.metric-value:nth-child(5)').textContent = `${premiumRate}%`;
-            
-            const btcAmount = parseFloat(btcInput.value) || 1.5;
-            const btcValue = btcAmount * 35000; // Assuming $35,000 per BTC
-            document.querySelector('.metric-value:nth-child(6)').textContent = `$${(btcValue * 0.9).toLocaleString()}`;
-            
-            document.querySelector('.metric-value:nth-child(7)').textContent = `${apy}% APY`;
-            
-            // Show success message with animation
-            this.innerHTML = '<i class="fas fa-check-circle"></i> Assessment Complete';
-            this.style.background = 'var(--success)';
-            
-            setTimeout(() => {
-                this.innerHTML = 'Assess Risk & Generate Quote';
-                this.style.background = '';
+            // Add highlight animation to key elements
+            const highlights = document.querySelectorAll('.highlight');
+            setInterval(() => {
+                highlights.forEach(highlight => {
+                    highlight.classList.toggle('active');
+                });
             }, 2000);
-        });
-        
-        // Animation triggers when elements come into view
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.section-title, .product-card, .simulation-container, .roadmap-item, .footer-logo, .contact-info, .copyright').forEach(el => {
-            el.style.animationPlayState = 'paused';
-            observer.observe(el);
-        });
-        
-        // Create particle effect
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random properties
-                const size = Math.random() * 5 + 2;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const delay = Math.random() * 8;
-                const duration = Math.random() * 5 + 8;
-                const opacity = Math.random() * 0.4 + 0.1;
-                
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                particle.style.animationDelay = `${delay}s`;
-                particle.style.animationDuration = `${duration}s`;
-                particle.style.opacity = opacity;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Initialize 3D Bitcoin scene
-        function init3DScene() {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.getElementById('bitcoin-scene').appendChild(renderer.domElement);
-            
-            // Create Bitcoin geometry
-            const geometry = new THREE.CylinderGeometry(1, 1, 0.3, 32);
-            const material = new THREE.MeshPhongMaterial({ 
-                color: 0xF7931A,
-                shininess: 100,
-                specular: 0xFFFFFF
-            });
-            const bitcoin = new THREE.Mesh(geometry, material);
-            scene.add(bitcoin);
-            
-            // Add lights
-            const ambientLight = new THREE.AmbientLight(0x404040);
-            scene.add(ambientLight);
-            
-            const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
-            directionalLight.position.set(5, 5, 5);
-            scene.add(directionalLight);
-            
-            const pointLight = new THREE.PointLight(0x00F5D4, 1, 100);
-            pointLight.position.set(0, 0, 5);
-            scene.add(pointLight);
-            
-            camera.position.z = 5;
-            
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-            
-            // Animation
-            function animate() {
-                requestAnimationFrame(animate);
-                
-                bitcoin.rotation.x += 0.005;
-                bitcoin.rotation.y += 0.01;
-                
-                renderer.render(scene, camera);
-            }
-            
-            animate();
-        }
-        
-        // Initialize everything when the page loads
-        window.addEventListener('load', () => {
-            createParticles();
-            
-            // Only initialize 3D scene if WebGL is supported
-            if (typeof WebGLRenderingContext !== 'undefined') {
-                try {
-                    init3DScene();
-                } catch (e) {
-                    console.log('3D rendering not supported', e);
-                }
-            }
         });
     </script>
 </body>
